@@ -3,6 +3,8 @@
 #include "GlobalStructs.h"
 #include "RenderingInternStructs.h"
 #include <GLFW/glfw3.h>
+#include <set>
+#include <iostream>
 namespace NV
 {
     namespace Rendering
@@ -14,6 +16,12 @@ namespace NV
 			bool IsComplete() {
 				return GraphicsFamily >= 0 && PresentFamily >= 0;
 			}
+		};
+
+		struct SwapChainSupportDetails {
+			VkSurfaceCapabilitiesKHR Capabilites;
+			std::vector<VkSurfaceFormatKHR> Formats;
+			std::vector<VkPresentModeKHR> PresentModes;
 		};
 
         class Renderer : public IRendering::IRenderer
@@ -40,6 +48,9 @@ namespace NV
 			GLFWwindow* m_pWnd;
 			VkSurfaceKHR m_surface;
 			VkPhysicalDevice m_physicalDevice;
+			VkDevice m_logicalDevice;
+			VkQueue m_graphicsQueue;
+			VkQueue m_presentQueue;
 		public: 
 			/**
 			* Initializes the vulkan renderer to be ready to use
@@ -78,6 +89,9 @@ namespace NV
 			 * Picks the most valuable physical device of the current system.
 			 */
 			void PickPhysicalDevice();
+			/** 
+			* Creates the logical device of vulkan 
+			*/
 			void CreateLogicalDevice();
 
 
@@ -115,6 +129,24 @@ namespace NV
 			 *@return If it's suitable or not
 			 */
 			bool IsDeviceSuitable(VkPhysicalDevice device);
+			/**
+			* Finds queue families of the device
+			* @param device The device which should get checked of families
+			* @return The indices of the queuefamilies which get found.
+			*/
+			QueueFamilyIndices FindQueueFamilies(VkPhysicalDevice device);
+			/** 
+			* Checks if the device supports the extensions
+			* @param device The device to check for support
+			* @return If it supports or not
+			*/
+			bool CheckDeviceExtensionSupport(VkPhysicalDevice device);
+			/** 
+			* Checks if the device supports query swapchains
+			* @param device The device to check for support
+			* @return The details of the swapchainsupport
+			*/
+			SwapChainSupportDetails QuerySwapChainSupport(VkPhysicalDevice device);
 
         };
     }
