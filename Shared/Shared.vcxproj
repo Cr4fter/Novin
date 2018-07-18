@@ -19,9 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\EngienShared.cpp" />
+    <ClCompile Include="src\EngineShared.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\GlobalStructs.h" />
     <ClInclude Include="Include\IRendering.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -81,7 +82,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
-    <IncludePath>$(ProjectDir)Include\glm;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -99,7 +100,7 @@
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
-    <IncludePath>$(ProjectDir)Include\glm;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -116,6 +117,12 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>glfw3.lib;</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)Lib\GLFW\lib-vc2015;</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -172,6 +179,12 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>glfw3.lib;</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)Lib\GLFW\lib-vc2015;</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
