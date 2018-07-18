@@ -1,7 +1,9 @@
 #include "Engine.h"
+#include "IRendering.h"
+#include "iniContainer.h"
+
 #include <cstdio>
 #include <iostream>
-#include "IRendering.h"
 
 #if _WIN64
 #include <windows.h>
@@ -13,6 +15,8 @@ void NV::Core::Engine::Init(const std::string ProjectPath)
 {
     printf("Engine Init\n");
     printf("Project: %s\n", ProjectPath.c_str());
+
+    Tools::iniContainer(R"(C:\Users\noah.forberich\Documents\Visual Studio 2017\Projects\Novin\DemoProject\ProjectConfig.txt)");
 
     link_renderer();
 

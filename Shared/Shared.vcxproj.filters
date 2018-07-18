@@ -18,9 +18,15 @@
     <ClCompile Include="src\EngienShared.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\IniContainer.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\IRendering.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\iniContainer.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

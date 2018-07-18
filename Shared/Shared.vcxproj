@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp\IniContainer.cpp" />
     <ClCompile Include="src\EngienShared.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\iniContainer.h" />
     <ClInclude Include="Include\IRendering.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -81,25 +83,25 @@
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
-    <IncludePath>$(ProjectDir)Include\glm;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
-    <IncludePath>$(ProjectDir)Include\glm;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
-    <IncludePath>$(ProjectDir)Include\glm;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
-    <IncludePath>$(ProjectDir)Include\glm;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
