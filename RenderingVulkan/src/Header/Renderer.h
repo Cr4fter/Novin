@@ -1,10 +1,18 @@
 #pragma once
+#pragma region Internal Includes
 #include "IRendering.h"
 #include "GlobalStructs.h"
 #include "RenderingInternStructs.h"
-#include <GLFW/glfw3.h>
+#include "RendererStorage.h"
+#pragma endregion // Internal Includes
+
+#pragma region External Includes
+#define GLFW_INCLUDE_VULKAN
+#include <GLFW\glfw3.h>
 #include <set>
 #include <iostream>
+#pragma endregion // External Includes
+
 
 const int WIDTH = 1600;
 const int HEIGHT = 800;
@@ -66,6 +74,23 @@ namespace NV
 			VkExtent2D m_swapChainExtent;
 			VkRenderPass m_renderPass;
 			VkPipeline m_graphicsPipeline;
+			VkDescriptorSetLayout m_descriptorSetLayout;
+			VkPipelineLayout m_pipelineLayout;
+			VkImage m_depthImage; 
+			VkImageView m_depthImageView;
+			VkDeviceMemory m_depthImageMemory;
+			std::vector<VkFramebuffer> m_swapChainFramebuffers;
+			std::vector<VkCommandBuffer> m_commandBuffers;
+			std::vector<VkBuffer> m_vertexBuffers; 
+			VkBuffer m_indexBuffer;
+			std::vector<uint32_t> m_indices;
+			std::vector<VkDescriptorSet> m_descriptorSets;
+			/// Handles for the Run method
+			std::vector<VkSemaphore> m_imageAvailableSemaphores;
+			std::vector<VkSemaphore> m_renderFinishedSemaphores;
+			std::vector<VkFence> m_inFlightFences;
+			size_t m_currentFrame;
+			RendererStorage* m_storage;
 		public: 
 			/**
 			 * Default Constructor
@@ -74,7 +99,11 @@ namespace NV
 			/**
 			* Initializes the vulkan renderer to be ready to use
 			*/
-			void Init(GLFWwindow* wnd) override;	
+			void Init(GLFWwindow* wnd, std::vector<NV::IRendering::ShaderPack> shaders) override;
+			/**
+			* Updates the rendering.
+			*/
+			void Run() override;
 			/**
 			* Gets new mesh datas, which will get computed and registered in the renderer. To access them you have to use the index which is the return value
 			* @param meshData The raw mesh data includes vertices, indices eg. 
@@ -95,6 +124,8 @@ namespace NV
 			 * Initializes the vulkan features to be ready to use
 			 */
 			void InitVulkan();
+			///	    ---------** Functions for the Run method **---------
+			void DrawFrame();
 			///		---------** The whole init functions for everything before the rendering happens **---------
 			/**
 			* compute the whole mesh data to allocate the resources of them and create the vertex and index buffer eg. 
@@ -122,6 +153,10 @@ namespace NV
 			*/
 			void CreateLogicalDevice();
 			/**
+			* Creates the layout for the descriptorsets
+			*/
+			void CreateDescriptorLayout();
+			/**
 			 * Creates the command pool which can be used for commandbuffers
 			 */
 			void CreateCommandPool();
@@ -144,12 +179,37 @@ namespace NV
 			 */
 			void CreateRenderPass();
 			/**
+			* Creates the shaders based on the input in the Init method
+			*/
+			void CreateShaders(std::vector<NV::IRendering::ShaderPack> shaders);
+			/**
 			 * Creates the graphics pipeline based on the available objects cretaed before
 			 */
 			void CreateGraphicsPipeline();
-
+			/**
+			* Creates the depth resources for depth buffering
+			*/
+			void CreateDepthResources();
+			/**
+			* Creates the frame buffers
+			*/
+			void CreateFramebuffers();
+			/**
+			* Creates the command buffers
+			*/
+			void CreateCommandBuffers();
+			/**
+			* Creates Sync objects like semaphores and fences
+			*/
+			void CreateSyncObjects();
 			/// ----------** Everything what happens when vulkan gets (partial) released **------------- 
-
+			/**
+			* Cleans up the swap chain and everything which depends on it for resizing the window eg.
+			*/
+			void CleanupSwapChain();
+			/**
+			* Cleans up the devices for the complete shut down
+			*/
 			void Cleanup();
 
 			/// ----------** Static functions **----------
@@ -257,6 +317,62 @@ namespace NV
 			 * @return The format which supports the params.
 			 */
 			VkFormat FindSupportedFormat(const std::vector<VkFormat>& candidates, VkImageTiling tiling, VkFormatFeatureFlags features);
+			/**
+			* Creates an image based on the incoming parameters
+			* @param width The width of the image you want to create
+			* @param height The height of the image you want to create
+			* @param mipLevels The mipLevles of the image 
+			* @param format The format the image should have at the end
+			* @param tiling The tiling of the image you want to create
+			* @param usage The usage the image will have after the creattion 
+			* @param properties Properties of the memory the image should have
+			* @param image The image you want to create 
+			* @param imageMemory The memory where the image should be allocated to 
+			*/
+			void CreateImage(uint32_t width, uint32_t height, uint32_t mipLevels, VkFormat format, VkImageTiling tiling, VkImageUsageFlags usage, VkMemoryPropertyFlags properties, VkImage& image, VkDeviceMemory &imageMemory);
+			/**
+			*  Finds a suitable type of the memory based on the filter types and properties
+			* @param typeFilter The filter you want to use to declare the type 
+			* @param properties The memory properties the type should have
+			* @return A suitable filter based on the physical device
+			*/
+			uint32_t FindMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
+			/**
+			* Creates a new shader module 
+			* @param code The code of the shader
+			* @return The resulting shadermodule
+			*/
+			VkShaderModule CreateShaderModule(const std::vector<char>& code);
+			/**
+			* Transits an image layout to another image layout 
+			* @param image The image which will get another layout
+			* @param format The format of the image
+			* @param oldLayout The oldLayout which should be transit
+			* @param newLayout The newLayout which should be the layout after the transition
+			* @param mipLevels The current mipLevels
+			*/
+			void TransitionImageLayout(VkImage image, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout, uint32_t mipLevels);
+			/**
+			* Begins a single time command from the command pool 
+			* @return A command buffer which you can use to perform a command
+			*/
+			VkCommandBuffer BeginSingleTimeCommand(); 
+			/**
+			* Ends a single time command
+			* @param The buffer you want to let end
+			*/
+			void EndSingleTimeCommand(VkCommandBuffer commandBuffer); 
+			/**
+			* Checks if the format has a stencil component
+			* @param format The format you want to check for stencil component
+			* @return If it has a stencil component or not
+			*/
+			bool HasStencilComponent(VkFormat format);
+						/// ***----*** The helper functions to make the rendering process ***-----***
+			/**
+			* Recreates the swap chain
+			*/
+			void RecreateSwapChain();
         };
     }
 }

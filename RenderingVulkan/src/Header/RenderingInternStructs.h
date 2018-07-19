@@ -1,5 +1,6 @@
 #pragma once
-#include <vulkan.h>
+#define GLFW_INCLUDE_VULKAN
+#include <GLFW/glfw3.h>
 #include <array>
 #include <vector>
 #include <glm\vec2.hpp>

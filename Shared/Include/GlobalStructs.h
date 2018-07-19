@@ -1,7 +1,9 @@
 #pragma once
 #include <vector>
-#include <glm.hpp>
+
+#include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
+
 namespace NV
 {
 	namespace IRendering
@@ -21,7 +23,10 @@ namespace NV
 			std::vector<uint32_t> Indices; 
 			std::vector<glm::vec3> Tangents; 
 			std::vector<glm::vec3> Bitangents;
-
+		};
+		struct ShaderPack {
+			std::vector<char> VertexShader; 
+			std::vector<char> FragmentShader;
 		};
 	}
 }

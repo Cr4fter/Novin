@@ -12,7 +12,7 @@ namespace NV
 		private: 
 			std::vector<MeshData> m_meshes; 
 		public: 
-			uint32_t StoreMesh(MeshData mesh); 
+			uint32_t StoreMesh(MeshData mesh);
 		};
 	}
 }

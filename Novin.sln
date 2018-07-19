@@ -18,6 +18,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineShared", "Shared\Shared.vcxproj", "{42377668-2F67-4314-930F-EE309E20D7B2}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RenderingVulkan", "RenderingVulkan\RenderingVulcan.vcxproj", "{FC79B8E7-FBD7-457C-AD70-02AED3D08AD3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{42377668-2F67-4314-930F-EE309E20D7B2} = {42377668-2F67-4314-930F-EE309E20D7B2}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
