@@ -5,6 +5,10 @@
 #include <GLFW/glfw3.h>
 #include <set>
 #include <iostream>
+
+const int WIDTH = 1600;
+const int HEIGHT = 800;
+
 namespace NV
 {
     namespace Rendering
@@ -43,6 +47,7 @@ namespace NV
 #else 
 			const bool enableValidationLayers = true;
 #endif
+			/// Devices which need to get initialized before the graphicspipeline can get created
 			VkInstance m_vkInstance;
 			VkDebugReportCallbackEXT m_callback;
 			GLFWwindow* m_pWnd;
@@ -51,23 +56,46 @@ namespace NV
 			VkDevice m_logicalDevice;
 			VkQueue m_graphicsQueue;
 			VkQueue m_presentQueue;
+			VkCommandPool m_commandPool;
+			VkDescriptorPool m_descriptorPool;
+			/// Handles which are needed to create the graphicspipeline
+			VkSwapchainKHR m_swapChain;
+			std::vector<VkImage> m_swapChainImages;
+			std::vector<VkImageView> m_swapChainImageViews;
+			VkFormat m_swapChainImageFormat;
+			VkExtent2D m_swapChainExtent;
+			VkRenderPass m_renderPass;
+			VkPipeline m_graphicsPipeline;
 		public: 
+			/**
+			 * Default Constructor
+			 */
+			Renderer(); 
 			/**
 			* Initializes the vulkan renderer to be ready to use
 			*/
-			void Init(GLFWwindow* wnd) override; 
+			void Init(GLFWwindow* wnd) override;	
 			/**
 			* Gets new mesh datas, which will get computed and registered in the renderer. To access them you have to use the index which is the return value
 			* @param meshData The raw mesh data includes vertices, indices eg. 
 			* @return Returns the index of the overall computed and allocated data which aren't visible from outside of the renderer. 
 			*/
-			uint32_t GetRawMeshData(NV::IRendering::RawMeshData& meshData) override;
-		private: 
-			///		---------** The whole init functions for everything before the rendering happens **---------
+			uint32_t ApplyRawMeshData(NV::IRendering::RawMeshData& meshData) override;
 			/**
-			* Initialized the devices which are needed to work with the renderer 
+			 * Releases the whole engine and every part of it
+			 */
+			void Release() override;
+		private: 
+			///	    ---------** Functions for the Init method **---------
+			/**
+			* Initializes the devices which are needed to work with the renderer 
 			*/
 			void InitDevices();
+			/**
+			 * Initializes the vulkan features to be ready to use
+			 */
+			void InitVulkan();
+			///		---------** The whole init functions for everything before the rendering happens **---------
 			/**
 			* compute the whole mesh data to allocate the resources of them and create the vertex and index buffer eg. 
 			* @param rawMeshData Only the raw mesh datas like vertices and indices without any sort of computed or vulkan dependence.
@@ -93,10 +121,36 @@ namespace NV
 			* Creates the logical device of vulkan 
 			*/
 			void CreateLogicalDevice();
-
+			/**
+			 * Creates the command pool which can be used for commandbuffers
+			 */
+			void CreateCommandPool();
+			/**
+			 * Creates the descriptor pool where you can get the available descriptorSets
+			 */
+			void CreateDescriptorPool();
 
 			/// ----------** Everything what happens while the rendering is in process **------------- 
-			void CreateSwapChain(); 
+			/**
+			 * Creates the swap chain which is needed for the graphics pipeline
+			 */
+			void CreateSwapChain();
+			/**
+			 * Creates the image views for the swap chain
+			 */
+			void CreateImageViews(); 
+			/**
+			 * Creates the render passs
+			 */
+			void CreateRenderPass();
+			/**
+			 * Creates the graphics pipeline based on the available objects cretaed before
+			 */
+			void CreateGraphicsPipeline();
+
+			/// ----------** Everything what happens when vulkan gets (partial) released **------------- 
+
+			void Cleanup();
 
 			/// ----------** Static functions **----------
 			static VKAPI_ATTR VkBool32 VKAPI_CALL DebugCallBack(
@@ -109,10 +163,25 @@ namespace NV
 				const char* msg,
 				void* userData);
 			/// ----------** Proxy Methods **----------------
+			/**
+			 * Proxy method to callback debug reports
+			 * @param instance The instance of vulkan where you want to get the reports from
+			 * @param pCreateInfo Pointer to an create info which defines the information about the creation
+			 * @param pAllocator Pointer to the allocator which will allocate the space for the callback
+			 * @param pCallBack Pointer to the callback which should receive the debug reports
+			 * @return Returns a result of the debug report
+			 */
 			VkResult CreateDebugReportCallbackEXT(VkInstance instance, const VkDebugReportCallbackCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDebugReportCallbackEXT* pCallback);
+			/**
+			 * static function which destroys a VkDebugReportCallbackEXT object
+			 * @param instance The instance where you want to destroy the callback from 
+			 * @param callback The callback you want to destroy 
+			 * @param pAllocator The allocator where the callback is allocate and where the callback need to get removed from
+			 */
 			static void DestroyDebugReportCallbackEXT(VkInstance instance, VkDebugReportCallbackEXT callback, const VkAllocationCallbacks* pAllocator);
 
 			/// ----------** Helper functions **-------------------
+							/// ***----*** The helper functions to initialize the devices ***-----***
 			/** 
 			* Checks if the validation layer is supported
 			* @return if the validation layer is supported.
@@ -141,13 +210,53 @@ namespace NV
 			* @return If it supports or not
 			*/
 			bool CheckDeviceExtensionSupport(VkPhysicalDevice device);
+						/// ***----*** The helper functions to initialize vulkan to prepare rendering ***-----***
 			/** 
 			* Checks if the device supports query swapchains
 			* @param device The device to check for support
 			* @return The details of the swapchainsupport
 			*/
 			SwapChainSupportDetails QuerySwapChainSupport(VkPhysicalDevice device);
-
+			/**
+			 * Chooses the swapchain surface format 
+			 * @param availableFormats The formats where to choose from 
+			 * @return Returns the best fitting surface format
+			 */
+			VkSurfaceFormatKHR ChooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats); 
+			/**
+			 * Chooses the swapchain present mode 
+			 * @param availablePresentModes The present modes where to choose from
+			 * @return The best fiiting present mode
+			 */
+			VkPresentModeKHR ChooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
+			/**
+			 * Chooses the swap chain extent 
+			 * @param capabilities The capabilites to choose from 
+			 * @return The best fitting extent
+			 */
+			VkExtent2D ChooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
+			/**
+			 * Creates an Image view
+			 * @param image The image which you want to create
+			 * @param format The format the image should have at the end
+			 * @param aspectFlags The aspectflags for the image
+			 * @param mipLevels The mipLevels of the image
+			 * @return The created image
+			 */
+			VkImageView CreateImageView(VkImage image, VkFormat format, VkImageAspectFlags aspectFlags, uint32_t mipLevels);
+			/**
+			 * Finds the current Depth format
+			 * @return The depth format which is found
+			 */
+			VkFormat FindDepthFormat(); 
+			/**
+			 * Find supported formats
+			 * @param candidates A vector of formats as candidates for the supported format
+			 * @param tiling The tiling of the format you search for 
+			 * @param features The features of the format which have to fit 
+			 * @return The format which supports the params.
+			 */
+			VkFormat FindSupportedFormat(const std::vector<VkFormat>& candidates, VkImageTiling tiling, VkFormatFeatureFlags features);
         };
     }
 }

@@ -11,8 +11,8 @@ namespace NV
         public:
             virtual ~IRenderer() = default;
             virtual void Init(GLFWwindow* wnd) = 0;
-			virtual uint32_t GetRawMeshData(RawMeshData& meshData) = 0;
-
+			virtual uint32_t ApplyRawMeshData(RawMeshData& meshData) = 0;
+			virtual void Release() = 0;
         };
     }
 }
