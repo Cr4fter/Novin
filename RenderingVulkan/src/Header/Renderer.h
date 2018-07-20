@@ -131,7 +131,7 @@ namespace NV
 			* compute the whole mesh data to allocate the resources of them and create the vertex and index buffer eg. 
 			* @param rawMeshData Only the raw mesh datas like vertices and indices without any sort of computed or vulkan dependence.
 			*/
-			void ComputeMeshData(NV::IRendering::RawMeshData& rawMeshData); 
+			uint32_t ComputeMeshData(NV::IRendering::RawMeshData& rawMeshData); 
 			/** 
 			* Creates the vulkan instance. 
 			*/

@@ -21,9 +21,18 @@
     <ClInclude Include="Include\GlobalStructs.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Include\ShaderLoader.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\BaseFunctions.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EngineShared.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BaseFunctions.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

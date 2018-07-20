@@ -10,9 +10,12 @@ namespace NV
 		class RendererStorage
 		{
 		private: 
-			std::vector<MeshData> m_meshes; 
+			std::vector<MeshData> m_meshes;
 		public: 
 			uint32_t StoreMesh(MeshData mesh);
+			bool RemoveMesh(const uint32_t& index);
+			uint32_t StoreMaterial(); 
+
 		};
 	}
 }

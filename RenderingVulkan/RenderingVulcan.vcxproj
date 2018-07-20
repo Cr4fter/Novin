@@ -25,6 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\DLLMain.cpp" />
+    <ClCompile Include="src\cpp\RendererStorage.cpp" />
     <ClCompile Include="src\Header\Renderer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

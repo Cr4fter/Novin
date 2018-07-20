@@ -44,7 +44,7 @@ void NV::Rendering::Renderer::Run()
 
 uint32_t NV::Rendering::Renderer::ApplyRawMeshData(NV::IRendering::RawMeshData & meshData)
 {
-	ComputeMeshData(meshData);
+	return ComputeMeshData(meshData);
 }
 
 void NV::Rendering::Renderer::Release()
@@ -132,7 +132,7 @@ void NV::Rendering::Renderer::DrawFrame()
 	m_currentFrame = (m_currentFrame + 1) % MAX_FRAMES_IN_FLIGHT;
 }
 
-void NV::Rendering::Renderer::ComputeMeshData(NV::IRendering::RawMeshData & rawMeshData)
+uint32_t NV::Rendering::Renderer::ComputeMeshData(NV::IRendering::RawMeshData & rawMeshData)
 {
 	MeshData meshData = {};
 	std::vector<Vertex> vertices;
@@ -152,6 +152,7 @@ void NV::Rendering::Renderer::ComputeMeshData(NV::IRendering::RawMeshData & rawM
 	}
 	meshData.Vertices = vertices;
 	meshData.Indices = rawMeshData.Indices;
+	return m_storage->StoreMesh(meshData);
 }
 
 void NV::Rendering::Renderer::CreateInstance()

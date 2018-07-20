@@ -24,6 +24,18 @@ namespace NV
 			std::vector<glm::vec3> Tangents; 
 			std::vector<glm::vec3> Bitangents;
 		};
+
+		struct RawTexData {
+			uint32_t Width; 
+			uint32_t Height; 
+			void* Pixels;
+		};
+
+		struct RawMaterialData {
+			RawTexData DiffuseData; 
+			RawTexData NormalData;
+		};
+
 		struct ShaderPack {
 			std::vector<char> VertexShader; 
 			std::vector<char> FragmentShader;
