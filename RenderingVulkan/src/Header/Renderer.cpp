@@ -27,7 +27,7 @@ NV::Rendering::Renderer::Renderer()
 	m_swapChainExtent = {};
 }
 
-void NV::Rendering::Renderer::Init(GLFWwindow* wnd, std::vector<NV::IRendering::ShaderPack> shaders)
+void NV::Rendering::Renderer::Init(GLFWwindow* wnd, std::vector<NV::IRendering::ShaderPack>& shaders)
 {
 	printf("Init VulKan Renderer\n");
 
@@ -42,9 +42,9 @@ void NV::Rendering::Renderer::Run()
 	DrawFrame();
 }
 
-uint32_t NV::Rendering::Renderer::ApplyRawMeshData(NV::IRendering::RawMeshData & meshData)
+void NV::Rendering::Renderer::ApplyRawMeshData(NV::IRendering::RawMeshData & meshData)
 {
-	return ComputeMeshData(meshData);
+	ComputeMeshData(meshData);
 }
 
 void NV::Rendering::Renderer::Release()
@@ -69,7 +69,6 @@ void NV::Rendering::Renderer::InitVulkan()
 	CreateSwapChain();
 	CreateImageViews();
 	CreateRenderPass();
-	CreateGraphicsPipeline();
 	CreateDepthResources();
 	CreateFramebuffers();
 	CreateCommandBuffers();
@@ -132,7 +131,7 @@ void NV::Rendering::Renderer::DrawFrame()
 	m_currentFrame = (m_currentFrame + 1) % MAX_FRAMES_IN_FLIGHT;
 }
 
-uint32_t NV::Rendering::Renderer::ComputeMeshData(NV::IRendering::RawMeshData & rawMeshData)
+void NV::Rendering::Renderer::ComputeMeshData(NV::IRendering::RawMeshData & rawMeshData)
 {
 	MeshData meshData = {};
 	std::vector<Vertex> vertices;
@@ -152,7 +151,7 @@ uint32_t NV::Rendering::Renderer::ComputeMeshData(NV::IRendering::RawMeshData & 
 	}
 	meshData.Vertices = vertices;
 	meshData.Indices = rawMeshData.Indices;
-	return m_storage->StoreMesh(meshData);
+	rawMeshData.RendererIndex = m_storage->StoreMesh(meshData);
 }
 
 void NV::Rendering::Renderer::CreateInstance()
@@ -456,15 +455,22 @@ uint32_t NV::Rendering::Renderer::FindMemoryType(uint32_t typeFilter, VkMemoryPr
 	throw std::runtime_error("failed to find suitable memory type!");
 }
 
-VkShaderModule NV::Rendering::Renderer::CreateShaderModule(const std::vector<char>& code)
+VkShaderModule NV::Rendering::Renderer::CreateShaderModule(NV::IRendering::ShaderPack pack)
 {
-	VkShaderModuleCreateInfo createInfo = {};
-	createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
-	createInfo.codeSize = code.size();
-	createInfo.pCode = reinterpret_cast<const uint32_t*>(code.data());
+	VkShaderModuleCreateInfo vertCreateInfo = {};
+	vertCreateInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	vertCreateInfo.codeSize = pack.VertexShader.size();
+	vertCreateInfo.pCode = reinterpret_cast<const uint32_t*>(pack.VertexShader.data());
+
+	VkShaderModuleCreateInfo fragCreateInfo = {};
+	fragCreateInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO; 
+	fragCreateInfo.codeSize = pack.FragmentShader.size();
+	fragCreateInfo.pCode = reinterpret_cast<const uint32_t*>(pack.FragmentShader.data());
+
+	std::vector<VkShaderModuleCreateInfo> createInfos = { vertCreateInfo, fragCreateInfo };
 
 	VkShaderModule shaderModule;
-	if (vkCreateShaderModule(m_logicalDevice, &createInfo, nullptr, &shaderModule) != VK_SUCCESS) {
+	if (vkCreateShaderModule(m_logicalDevice, createInfos.data(), nullptr, &shaderModule) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create shader module");
 	}
 	return shaderModule;
@@ -585,7 +591,6 @@ void NV::Rendering::Renderer::RecreateSwapChain()
 	CreateSwapChain();
 	CreateImageViews();
 	CreateRenderPass();
-	CreateGraphicsPipeline();
 	CreateDepthResources();
 	CreateFramebuffers();
 	CreateCommandBuffers();
@@ -870,32 +875,26 @@ void NV::Rendering::Renderer::CreateRenderPass()
 	}
 }
 
-void NV::Rendering::Renderer::CreateShaders(std::vector<NV::IRendering::ShaderPack> shaders)
+void NV::Rendering::Renderer::CreateShaders(std::vector<NV::IRendering::ShaderPack>& shaders)
 {
 	for (NV::IRendering::ShaderPack shaderpack : shaders)
 	{
-		VkShaderModule vertShaderModule = CreateShaderModule(shaderpack.VertexShader);
-		VkShaderModule fragShaderModule = CreateShaderModule(shaderpack.FragmentShader);
+		shaderpack.RendererIndex = m_storage->StoreShader(CreateShaderModule(shaderpack));
 	}
 }
-
-void NV::Rendering::Renderer::CreateGraphicsPipeline()
+void NV::Rendering::Renderer::CreateGraphicsPipelineLayout(VkShaderModule shaderModule)
 {
-
-	VkShaderModule vertShaderModule = CreateShaderModule(vertexShaderCode);
-	VkShaderModule fragShaderModule = CreateShaderModule(fragShaderCode);
-
 	VkPipelineShaderStageCreateInfo vertShaderStageInfo = {};
 	vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
 	vertShaderStageInfo.stage = VK_SHADER_STAGE_VERTEX_BIT;
-	vertShaderStageInfo.module = vertShaderModule;
-	vertShaderStageInfo.pName = "main";
+	vertShaderStageInfo.module = shaderModule;
+	vertShaderStageInfo.pName = "VertMain";
 
 	VkPipelineShaderStageCreateInfo fragShaderStageInfo = {};
 	fragShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
 	fragShaderStageInfo.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
-	fragShaderStageInfo.module = fragShaderModule;
-	fragShaderStageInfo.pName = "main";
+	fragShaderStageInfo.module = shaderModule;
+	fragShaderStageInfo.pName = "FragMain";
 
 	VkPipelineShaderStageCreateInfo shaderStages[] = { vertShaderStageInfo, fragShaderStageInfo };
 
@@ -978,18 +977,24 @@ void NV::Rendering::Renderer::CreateGraphicsPipeline()
 	if (vkCreatePipelineLayout(m_logicalDevice, &pipelineLayoutInfo, nullptr, &m_pipelineLayout) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create pipeline layout!");
 	}
+}
 
+void NV::Rendering::Renderer::CreateGraphicsPipeline(	const VkPipelineShaderStageCreateInfo * shaderStages,				const VkPipelineVertexInputStateCreateInfo * vertexInputInfo, 
+	const VkPipelineInputAssemblyStateCreateInfo * inputAssembly, const VkPipelineViewportStateCreateInfo * viewportState,
+	const VkPipelineRasterizationStateCreateInfo * rasterizer, const VkPipelineMultisampleStateCreateInfo * multisampling,
+	const VkPipelineColorBlendStateCreateInfo * colorBlending, const VkPipelineDepthStencilStateCreateInfo * depthStencil)
+{
 	VkGraphicsPipelineCreateInfo pipelineInfo = {};
 	pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
 	pipelineInfo.stageCount = 2;
 	pipelineInfo.pStages = shaderStages;
-	pipelineInfo.pVertexInputState = &vertexInputInfo;
-	pipelineInfo.pInputAssemblyState = &inputAssembly;
-	pipelineInfo.pViewportState = &viewportState;
-	pipelineInfo.pRasterizationState = &rasterizer;
-	pipelineInfo.pMultisampleState = &multisampling;
-	pipelineInfo.pColorBlendState = &colorBlending;
-	pipelineInfo.pDepthStencilState = &depthStencil;
+	pipelineInfo.pVertexInputState = vertexInputInfo;
+	pipelineInfo.pInputAssemblyState = inputAssembly;
+	pipelineInfo.pViewportState = viewportState;
+	pipelineInfo.pRasterizationState = rasterizer;
+	pipelineInfo.pMultisampleState = multisampling;
+	pipelineInfo.pColorBlendState = colorBlending;
+	pipelineInfo.pDepthStencilState = depthStencil;
 	pipelineInfo.layout = m_pipelineLayout;
 	pipelineInfo.renderPass = m_renderPass;
 	pipelineInfo.subpass = 0;
@@ -997,9 +1002,6 @@ void NV::Rendering::Renderer::CreateGraphicsPipeline()
 	if (vkCreateGraphicsPipelines(m_logicalDevice, VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &m_graphicsPipeline) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create graphics pipeline");
 	}
-
-	vkDestroyShaderModule(m_logicalDevice, vertShaderModule, nullptr);
-	vkDestroyShaderModule(m_logicalDevice, fragShaderModule, nullptr);
 }
 
 void NV::Rendering::Renderer::CreateDepthResources()

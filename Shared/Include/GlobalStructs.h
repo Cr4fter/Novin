@@ -23,6 +23,7 @@ namespace NV
 			std::vector<uint32_t> Indices; 
 			std::vector<glm::vec3> Tangents; 
 			std::vector<glm::vec3> Bitangents;
+			uint32_t RendererIndex;
 		};
 
 		struct RawTexData {
@@ -39,6 +40,7 @@ namespace NV
 		struct ShaderPack {
 			std::vector<char> VertexShader; 
 			std::vector<char> FragmentShader;
+			uint32_t RendererIndex;
 		};
 	}
 }

@@ -99,17 +99,17 @@ namespace NV
 			/**
 			* Initializes the vulkan renderer to be ready to use
 			*/
-			void Init(GLFWwindow* wnd, std::vector<NV::IRendering::ShaderPack> shaders) override;
+			void Init(GLFWwindow* wnd, std::vector<NV::IRendering::ShaderPack>& shaders) override;
 			/**
 			* Updates the rendering.
 			*/
 			void Run() override;
 			/**
 			* Gets new mesh datas, which will get computed and registered in the renderer. To access them you have to use the index which is the return value
-			* @param meshData The raw mesh data includes vertices, indices eg. 
+			* @param meshData The raw mesh data includes vertices, indices eg. The index will be set in this function to access the shader from outside the renderer after applying 
 			* @return Returns the index of the overall computed and allocated data which aren't visible from outside of the renderer. 
 			*/
-			uint32_t ApplyRawMeshData(NV::IRendering::RawMeshData& meshData) override;
+			void ApplyRawMeshData(NV::IRendering::RawMeshData& meshData) override;
 			/**
 			 * Releases the whole engine and every part of it
 			 */
@@ -131,7 +131,7 @@ namespace NV
 			* compute the whole mesh data to allocate the resources of them and create the vertex and index buffer eg. 
 			* @param rawMeshData Only the raw mesh datas like vertices and indices without any sort of computed or vulkan dependence.
 			*/
-			uint32_t ComputeMeshData(NV::IRendering::RawMeshData& rawMeshData); 
+			void ComputeMeshData(NV::IRendering::RawMeshData& rawMeshData); 
 			/** 
 			* Creates the vulkan instance. 
 			*/
@@ -181,11 +181,18 @@ namespace NV
 			/**
 			* Creates the shaders based on the input in the Init method
 			*/
-			void CreateShaders(std::vector<NV::IRendering::ShaderPack> shaders);
+			void CreateShaders(std::vector<NV::IRendering::ShaderPack>& shaders);
 			/**
-			 * Creates the graphics pipeline based on the available objects cretaed before
+			* Creates the layout for the graphics pipeline.
+			*/
+			void CreateGraphicsPipelineLayout(VkShaderModule shaderModule);
+			/**
+			 * Creates the graphics pipeline based on the available objects created before
 			 */
-			void CreateGraphicsPipeline();
+			void CreateGraphicsPipeline(const VkPipelineShaderStageCreateInfo* shaderStages, const VkPipelineVertexInputStateCreateInfo* vertexInputInfo,
+				const VkPipelineInputAssemblyStateCreateInfo* inputAssembly, const VkPipelineViewportStateCreateInfo* viewportState,
+				const VkPipelineRasterizationStateCreateInfo* rasterizer, const VkPipelineMultisampleStateCreateInfo* multisampling,
+				const VkPipelineColorBlendStateCreateInfo* colorBlending, const VkPipelineDepthStencilStateCreateInfo* depthStencil);
 			/**
 			* Creates the depth resources for depth buffering
 			*/
@@ -342,7 +349,7 @@ namespace NV
 			* @param code The code of the shader
 			* @return The resulting shadermodule
 			*/
-			VkShaderModule CreateShaderModule(const std::vector<char>& code);
+			VkShaderModule CreateShaderModule(NV::IRendering::ShaderPack pack);
 			/**
 			* Transits an image layout to another image layout 
 			* @param image The image which will get another layout
