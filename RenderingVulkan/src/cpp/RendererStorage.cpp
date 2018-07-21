@@ -1,6 +1,6 @@
 #include "../Header/RendererStorage.h"
 
-NV::Rendering::RendererStorage::RendererStorage(VkDevice logicalDevice)
+NV::Rendering::RendererStorage::RendererStorage(VkDevice& logicalDevice)
 	:m_logicalDevice(logicalDevice)
 {
 }

@@ -14,7 +14,7 @@ namespace NV
 			std::vector<MeshData> m_meshes;
 			std::vector<VkShaderModule> m_shader;
 		public: 
-			RendererStorage(VkDevice logicalDevice);
+			RendererStorage(VkDevice& logicalDevice);
 			uint32_t StoreMesh(MeshData mesh);
 			MeshData GetMesh(const uint32_t& index);
 			bool RemoveMesh(const uint32_t& index);
