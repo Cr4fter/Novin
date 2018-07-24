@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\BaseFunctions.cpp" />
     <ClCompile Include="src\EngineShared.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\BaseFunctions.h" />
+    <ClInclude Include="Include\BaseFunctions.hpp" />
     <ClInclude Include="Include\GlobalStructs.h" />
     <ClInclude Include="Include\IRendering.h" />
     <ClInclude Include="Include\ShaderLoader.h" />

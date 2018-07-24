@@ -16,8 +16,6 @@ void NV::Core::Engine::Init(const std::string ProjectPath)
 
     link_renderer();
 
-    m_Renderer->Init();
-
 }
 
 void NV::Core::Engine::Run()

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _BASE_FUNCTIONS_H_
+#define _BASE_FUNCTIONS_H_
+
 #pragma region Internal Includes
 #pragma endregion //Internal Includes
 #pragma region External Includes
@@ -20,3 +22,5 @@ namespace NV
 		static std::vector<char> ReadFile(const std::string& filePath, const int& mode = std::ios::in);
 	}
 }
+#include "BaseFunctions.hpp"
+#endif //_BASE_FUNCTIONS_H_

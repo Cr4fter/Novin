@@ -21,7 +21,6 @@ namespace NV
 			uint32_t StoreShader(VkShaderModule shaderModule);
 			VkShaderModule GetShader(const uint32_t& index);
 			bool RemoveShader(const uint32_t& index); 
-			uint32_t StoreMaterial(); 
 
 		};
 	}

@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="HeaderExtension files">
+      <UniqueIdentifier>{2f383679-87e0-4854-b4b2-5edb991ce0bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\IRendering.h">
@@ -27,12 +30,12 @@
     <ClInclude Include="Include\BaseFunctions.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Include\BaseFunctions.hpp">
+      <Filter>HeaderExtension files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EngineShared.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\BaseFunctions.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
