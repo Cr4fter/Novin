@@ -1,8 +1,8 @@
 #include "BaseFunctions.h"
 
-std::vector<char> NV::Base::ReadFile(const std::string & filePath)
+std::vector<char> NV::Base::ReadFile(const std::string & filePath, const int& mode)
 {
-	std::ifstream file(filePath, std::ios::ate | std::ios::binary);
+	std::ifstream file(filePath, std::ios::ate | mode);
 	if (!file.is_open()) {
 		throw std::runtime_error("failed to open file");
 		return std::vector<char>(0);
