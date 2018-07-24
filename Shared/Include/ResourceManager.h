@@ -10,7 +10,7 @@ namespace NV
 		private:
 
 		public: 
-			ResourceManager()
+			ResourceManager();
 		};
 	}
 }

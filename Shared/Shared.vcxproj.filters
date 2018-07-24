@@ -33,6 +33,9 @@
     <ClInclude Include="Include\BaseFunctions.hpp">
       <Filter>HeaderExtension files</Filter>
     </ClInclude>
+    <ClInclude Include="Include\ResourceManager.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EngineShared.cpp">

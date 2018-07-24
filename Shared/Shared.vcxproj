@@ -26,6 +26,7 @@
     <ClInclude Include="Include\BaseFunctions.hpp" />
     <ClInclude Include="Include\GlobalStructs.h" />
     <ClInclude Include="Include\IRendering.h" />
+    <ClInclude Include="Include\ResourceManager.h" />
     <ClInclude Include="Include\ShaderLoader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
