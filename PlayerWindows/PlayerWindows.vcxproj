@@ -51,11 +51,13 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
+    <ExecutablePath>$(IncludePath);$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
+    <ExecutablePath>$(IncludePath);$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

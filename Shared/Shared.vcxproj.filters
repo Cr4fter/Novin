@@ -21,12 +21,30 @@
     <ClCompile Include="src\cpp\IniContainer.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\EngineState.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ThreadPool.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\IRendering.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Include\iniContainer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\EngineState.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Path.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ThreadPool.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Log.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

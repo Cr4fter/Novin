@@ -13,15 +13,75 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Headerdateien\Scene">
+      <UniqueIdentifier>{49b8e25b-1ff4-43e7-892b-26d4634d6ab2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Managers">
+      <UniqueIdentifier>{e8e4b12a-935c-4a04-a976-102db7a76ba9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Scene">
+      <UniqueIdentifier>{e58c5f69-03fa-454d-bb4a-ae0ca176621b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Header\Scene.h">
+      <Filter>Headerdateien\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Header\SceneManager.h">
+      <Filter>Headerdateien\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Header\Audio.h">
+      <Filter>Headerdateien\Managers</Filter>
+    </ClInclude>
     <ClInclude Include="Include\Engine.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Header\GameObject.h">
+      <Filter>Headerdateien\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Header\IComponent.h">
+      <Filter>Headerdateien\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Header\TransformComponent.h">
+      <Filter>Headerdateien\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\RigidBody.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Header\PhysicsEngine.h">
+      <Filter>Headerdateien\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Header\RigidBodyComponent.h">
+      <Filter>Headerdateien\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\Engine.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Audio.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SceneManager.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Scene.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\RigidBody.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\PhysicsEngine.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\TransformComponent.cpp">
+      <Filter>Quelldateien\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\RigidBodyComponent.cpp">
+      <Filter>Quelldateien\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\GameObject.cpp">
+      <Filter>Quelldateien\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

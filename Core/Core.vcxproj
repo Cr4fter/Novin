@@ -19,10 +19,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\RigidBody.h" />
     <ClInclude Include="Include\Engine.h" />
+    <ClInclude Include="src\Header\Audio.h" />
+    <ClInclude Include="src\Header\GameObject.h" />
+    <ClInclude Include="src\Header\IComponent.h" />
+    <ClInclude Include="src\Header\PhysicsEngine.h" />
+    <ClInclude Include="src\Header\RigidBodyComponent.h" />
+    <ClInclude Include="src\Header\Scene.h" />
+    <ClInclude Include="src\Header\SceneManager.h" />
+    <ClInclude Include="src\Header\TransformComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp\Audio.cpp" />
     <ClCompile Include="src\cpp\Engine.cpp" />
+    <ClCompile Include="src\cpp\GameObject.cpp" />
+    <ClCompile Include="src\cpp\PhysicsEngine.cpp" />
+    <ClCompile Include="src\cpp\RigidBody.cpp" />
+    <ClCompile Include="src\cpp\RigidBodyComponent.cpp" />
+    <ClCompile Include="src\cpp\Scene.cpp" />
+    <ClCompile Include="src\cpp\SceneManager.cpp" />
+    <ClCompile Include="src\cpp\TransformComponent.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -81,25 +98,25 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)Include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\noah.forberich\Documents\Visual Studio 2017\Projects\Novin\Core\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Include\;$(SolutionDir)PhysicsBullet\src\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Include\;$(SolutionDir)PhysicsBullet\src\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)Include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\noah.forberich\Documents\Visual Studio 2017\Projects\Novin\Core\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -111,17 +128,17 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>$(SolutionDir)Shared\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Shared\Include;$(SolutionDir)\PhysicsBullet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>EngineShared.lib</AdditionalDependencies>
+      <AdditionalDependencies>EngineShared.lib;PhysicsBullet.lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)Shared\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)PhysicsBullet\bin\$(Configuration)\;$(SolutionDir)Shared\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -141,10 +158,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>EngineShared.lib</AdditionalDependencies>
+      <AdditionalDependencies>EngineShared.lib;PhysicsBullet.lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)Shared\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)PhysicsBullet\bin\$(Configuration)\;$(SolutionDir)Shared\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -168,10 +185,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>EngineShared.lib</AdditionalDependencies>
+      <AdditionalDependencies>EngineShared.lib;PhysicsBullet.lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)Shared\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)PhysicsBullet\bin\$(Configuration)\;$(SolutionDir)Shared\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -186,7 +203,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>$(SolutionDir)Shared\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Shared\Include;$(SolutionDir)\PhysicsBullet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -195,10 +212,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>EngineShared.lib</AdditionalDependencies>
+      <AdditionalDependencies>EngineShared.lib;PhysicsBullet.lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)Shared\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)PhysicsBullet\bin\$(Configuration)\;$(SolutionDir)Shared\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

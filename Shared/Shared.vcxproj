@@ -19,12 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp\EngineState.cpp" />
     <ClCompile Include="src\cpp\IniContainer.cpp" />
+    <ClCompile Include="src\cpp\ThreadPool.cpp" />
     <ClCompile Include="src\EngienShared.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\EngineState.h" />
     <ClInclude Include="Include\iniContainer.h" />
     <ClInclude Include="Include\IRendering.h" />
+    <ClInclude Include="Include\Log.h" />
+    <ClInclude Include="Include\Path.hpp" />
+    <ClInclude Include="Include\ThreadPool.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
