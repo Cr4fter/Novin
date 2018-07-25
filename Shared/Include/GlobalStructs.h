@@ -27,9 +27,15 @@ namespace NV
 		};
 
 		struct RawTexData {
-			uint32_t Width; 
-			uint32_t Height; 
+			int32_t Width; 
+			int32_t Height; 
+			int32_t TexChannels;
 			void* Pixels;
+			void Release()
+			{
+				delete Pixels; 
+				delete this;
+			}
 		};
 
 		struct RawMaterialData {

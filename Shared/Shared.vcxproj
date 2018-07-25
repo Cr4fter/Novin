@@ -20,19 +20,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Include\ResourceManager.cpp" />
-    <ClCompile Include="src\EngineShared.cpp" />
-    <ClCompile Include="src\ShaderLoader.cpp" />
+    <ClCompile Include="src\ResourceLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\BaseFunctions.h" />
     <ClInclude Include="Include\BaseFunctions.hpp" />
     <ClInclude Include="Include\GlobalStructs.h" />
     <ClInclude Include="Include\IRendering.h" />
+    <ClInclude Include="Include\ResourceLoader.h" />
     <ClInclude Include="Include\ResourceManager.h" />
-    <ClInclude Include="Include\ShaderLoader.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="src\ResourceManager.cp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -121,16 +117,18 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;assimp-vc140-mt.lib;</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(ProjectDir)Lib\GLFW\lib-vc2015;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)Lib\GLFW\lib-vc2015;$(ProjectDir)Lib\assimp;</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

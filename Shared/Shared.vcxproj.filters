@@ -24,9 +24,6 @@
     <ClInclude Include="Include\GlobalStructs.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Include\ShaderLoader.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Include\BaseFunctions.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -36,21 +33,16 @@
     <ClInclude Include="Include\ResourceManager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Include\ResourceLoader.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\EngineShared.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ShaderLoader.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Include\ResourceManager.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="src\ResourceManager.cp">
+    <ClCompile Include="src\ResourceLoader.cpp">
       <Filter>Quelldateien</Filter>
-    </None>
+    </ClCompile>
   </ItemGroup>
 </Project>

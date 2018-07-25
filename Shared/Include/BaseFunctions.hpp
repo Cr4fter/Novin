@@ -34,6 +34,7 @@ std::string NV::Base::GetExtensionOfFile(const std::string & str)
 		}
 		tempStr.push_back(*it);
 	}
+	std::reverse(tempStr.begin(), tempStr.end());
 	return tempStr;
 }
 
