@@ -21,4 +21,20 @@ std::vector<char> NV::Base::ReadFile(const std::string & filePath, const int& mo
 	return buffer;
 }
 
+
+std::string NV::Base::GetExtensionOfFile(const std::string & str)
+{
+	std::string tempStr;
+	bool isExtension = true;
+	for (std::string::const_reverse_iterator it = str.rbegin(); it != str.rend(); ++it)
+	{
+		if (*it == '.')
+		{
+			break;
+		}
+		tempStr.push_back(*it);
+	}
+	return tempStr;
+}
+
 #endif // _BASIC_FUNCTIONS_H

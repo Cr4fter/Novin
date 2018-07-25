@@ -20,6 +20,9 @@ namespace NV
 		 * @return A vector of chars.
 		 */
 		static std::vector<char> ReadFile(const std::string& filePath, const int& mode = std::ios::in);
+
+		static std::string GetExtensionOfFile(const std::string& str);
+
 	}
 }
 #include "BaseFunctions.hpp"

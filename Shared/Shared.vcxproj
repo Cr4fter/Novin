@@ -19,7 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Include\ResourceManager.cpp" />
     <ClCompile Include="src\EngineShared.cpp" />
+    <ClCompile Include="src\ShaderLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\BaseFunctions.h" />
@@ -28,6 +30,9 @@
     <ClInclude Include="Include\IRendering.h" />
     <ClInclude Include="Include\ResourceManager.h" />
     <ClInclude Include="Include\ShaderLoader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\ResourceManager.cp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

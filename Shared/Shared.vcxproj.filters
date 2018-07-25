@@ -41,5 +41,16 @@
     <ClCompile Include="src\EngineShared.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\ShaderLoader.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\ResourceManager.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\ResourceManager.cp">
+      <Filter>Quelldateien</Filter>
+    </None>
   </ItemGroup>
 </Project>
