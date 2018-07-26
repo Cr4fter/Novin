@@ -19,10 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\EngienShared.cpp" />
+    <ClCompile Include="Include\ResourceManager.cpp" />
+    <ClCompile Include="src\ResourceLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\BaseFunctions.h" />
+    <ClInclude Include="Include\BaseFunctions.hpp" />
+    <ClInclude Include="Include\GlobalStructs.h" />
     <ClInclude Include="Include\IRendering.h" />
+    <ClInclude Include="Include\ResourceLoader.h" />
+    <ClInclude Include="Include\ResourceManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -81,7 +87,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
-    <IncludePath>$(ProjectDir)Include\glm;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -99,7 +105,7 @@
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
-    <IncludePath>$(ProjectDir)Include\glm;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -111,11 +117,19 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>glfw3.lib;assimp-vc140-mt.lib;</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)Lib\GLFW\lib-vc2015;$(ProjectDir)Lib\assimp;</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -172,6 +186,12 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>glfw3.lib;</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)Lib\GLFW\lib-vc2015;</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
