@@ -27,8 +27,12 @@ NV::Rendering::Renderer::Renderer()
 	m_swapChainExtent = {};
 }
 
-void NV::Rendering::Renderer::Init(GLFWwindow* wnd, std::vector<NV::IRendering::ShaderPack>& shaders)
+void NV::Rendering::Renderer::Init()
 {
+    glfwInit();
+    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+    m_pWnd = glfwCreateWindow(WIDTH, HEIGHT, "Muhahaha", NULL, NULL);
+
 	printf("Init VulKan Renderer\n");
 
 	InitDevices();
