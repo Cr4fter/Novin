@@ -9,7 +9,7 @@ namespace NV
         class SceneManager
         {
             Scene* m_ActiveScene = nullptr;
-
+            Physics::PhysicsEngine* m_PhysicsEngine = nullptr;
         public:
             void Initialize(Physics::PhysicsEngine*);
             void Update();

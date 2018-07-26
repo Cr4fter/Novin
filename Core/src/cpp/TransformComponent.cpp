@@ -1,5 +1,6 @@
-#include "../Header/TransformComponent.h"
+#include "../Header/ComponentTransform.h"
 #include <exception>
+#include "iostream"
 
 void NV::SceneSystem::TransformComponent::Initialize(GameObject* HostObject)
 {

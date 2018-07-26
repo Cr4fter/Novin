@@ -4,10 +4,13 @@
 #include "EngineState.h"
 #include "../Header/SceneManager.h"
 #include <ThreadPool.h>
-
-#include <cstdio>
 #include "Log.h"
+#include <cstdio>
+#include <chrono>
+#include <thread>
+#include <iostream>
 
+typedef std::chrono::high_resolution_clock Clock;
 typedef NV::IRendering::IRenderer*(*GetRenderingInstance)();
 
 NV::Core::Engine::~Engine()
@@ -43,8 +46,8 @@ void NV::Core::Engine::Init(const std::string& ProjectPath)
     m_Audio = new Audio::Audio();
     m_Audio->Initialize(m_EngineState, m_ThreadPool);
 
-    //m_Scene = new SceneSystem::SceneManager();
-    //m_Scene->Initialize(m_Physics);
+    m_Scene = new SceneSystem::SceneManager();
+    m_Scene->Initialize(m_Physics);
 
     m_Initialized = true;
 }
@@ -59,9 +62,21 @@ void NV::Core::Engine::Run()
 
     while (m_EngineState->GetIsRunning())
     {
+        auto frameStart = Clock::now();
         Debug::Log::HandleUpdate();
-        //m_Scene->Update();
+        m_Physics->Update(DeltaTime);
+        m_Scene->Update();
+
         //TODO Update Engine Systems(PhysicsEngine, Audio)
+        float ElapsedTime = (Clock::now() - frameStart).count() / 1000000.0f;
+        if (ElapsedTime < 16)
+        {
+            float sleepingDif = 16.0f - ElapsedTime;
+            //printf("Frame Took %f miliseconds! Sleeping for %f ms\n", ElapsedTime, sleepingDif);
+            std::chrono::duration<float, std::milli> tmp(sleepingDif);
+            std::this_thread::sleep_for(tmp);
+        }
+        DeltaTime = (Clock::now() - frameStart).count() / 1000000.0f;
     }
 }
 

@@ -3,6 +3,7 @@
 #include "../src/Header/PhysicsEngine.h"
 #include "../src/Header/Audio.h"
 
+
 namespace NV {
     namespace SceneSystem {
         class SceneManager;
@@ -40,6 +41,8 @@ namespace NV
         private:
             HINSTANCE hGetProcIDDLL = nullptr;
             bool m_Initialized = false;
+
+            float DeltaTime = 0;
 
             EngineState* m_EngineState = nullptr;
             IRendering::IRenderer* m_Renderer = nullptr;

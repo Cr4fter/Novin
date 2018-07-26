@@ -1,11 +1,11 @@
 #include "../Header/SceneManager.h"
 #include <exception>
-#include "Log.h"
-#include "../Header/RigidBodyComponent.h"
+#include "../Header/ComponentRigidBody.h"
+#include "../Header/ComponentLuaScript.h"
 
-void NV::SceneSystem::SceneManager::Initialize(Physics::PhysicsEngine* Physics)
+void NV::SceneSystem::SceneManager::Initialize(Physics::PhysicsEngine* _PhysicsEngine)
 {
-    Debug::Log::LogMessage("Scene Manager Initialized!");
+    m_PhysicsEngine = _PhysicsEngine;
     m_ActiveScene = SetupScene();
 }
 
@@ -15,6 +15,8 @@ void NV::SceneSystem::SceneManager::Update()
     {
         throw std::exception("No Active Scene");
     }
+
+    m_ActiveScene->Update();
 }
 
 void NV::SceneSystem::SceneManager::Teardown()
@@ -28,9 +30,18 @@ NV::SceneSystem::Scene* NV::SceneSystem::SceneManager::SetupScene()
 
     // -- Debug Scene Setup --
     GameObject* G1 = new GameObject();
-    RigidBodyComponent* Rbody = new RigidBodyComponent();
-    G1->AddComponent(Rbody);
+    G1->Initialize();
+    Scripting::LuaScriptingComponent* Script = new Scripting::LuaScriptingComponent();
+    G1->AddComponent(Script);
     scene->AddSceneObject(G1);
+
+    //GameObject* G2 = new GameObject();
+    //G2->Initialize();
+    //RigidBodyComponent* Rbody2 = new RigidBodyComponent(m_PhysicsEngine);
+    //G2->AddComponent(Rbody2);
+    //Rbody2->SetMass(0);
+    //scene->AddSceneObject(G2);
+
     return scene;
 }
 

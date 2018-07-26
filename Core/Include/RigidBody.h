@@ -22,6 +22,10 @@ namespace NV
         public:
             RigidBody(int, btCollisionShape*, btVector3);
             btRigidBody* GetRigidBody();
+            btMotionState* GetMotionState();
+
+            void SetMass(float mass);
+            void SetPosition(btVector3 newPos);
         };
     }
 }

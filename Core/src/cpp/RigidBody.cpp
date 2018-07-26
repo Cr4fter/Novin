@@ -6,6 +6,22 @@ btRigidBody* NV::Physics::RigidBody::GetRigidBody()
 {
     return m_BtRigidBody;
 }
+
+btMotionState * NV::Physics::RigidBody::GetMotionState()
+{
+    return m_MotionState;
+}
+
+void NV::Physics::RigidBody::SetMass(float mass)
+{
+    m_BtRigidBody->setMassProps(mass, m_LocalInteria);
+}
+
+void NV::Physics::RigidBody::SetPosition(btVector3 newPos)
+{
+    //TODO Update Rigidbody Position in PhysicsWorld
+}
+
 NV::Physics::RigidBody::RigidBody(int mass, btCollisionShape* shape, btVector3 Origin)
 {
     m_Shape = shape;
