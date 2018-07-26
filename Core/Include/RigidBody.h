@@ -1,5 +1,5 @@
 #pragma once
-#include "C:/Users/noah.forberich/Documents/Visual Studio 2017/Projects/Novin/PhysicsBullet/src/BulletDynamics/Dynamics/btRigidBody.h"
+#include "BulletDynamics/Dynamics/btRigidBody.h"
 //#include <BulletDynamics/Dynamics/btRigidBody.h>
 //#include "LinearMath/btMotionState.h"
 #include <LinearMath/btMotionState.h>
