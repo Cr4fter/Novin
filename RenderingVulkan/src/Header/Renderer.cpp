@@ -12,7 +12,6 @@ NV::Rendering::Renderer::Renderer()
 	, m_graphicsQueue(VK_NULL_HANDLE)
 	, m_physicalDevice(VK_NULL_HANDLE)
 	, m_logicalDevice(VK_NULL_HANDLE)
-	, m_swapChain(VK_NULL_HANDLE)
 	, m_renderPass(VK_NULL_HANDLE)
 	, m_graphicsPipeline(VK_NULL_HANDLE)
 	, m_descriptorSetLayout(VK_NULL_HANDLE)
@@ -36,7 +35,7 @@ void NV::Rendering::Renderer::Init()
 	printf("Init VulKan Renderer\n");
 
 	InitDevices();
-	InitVulkan();
+	//InitVulkan();
 
 	printf("Vulkan successfully instantiated");
 }
@@ -63,9 +62,9 @@ void NV::Rendering::Renderer::InitDevices()
 	CreateSurface();
 	PickPhysicalDevice();
 	CreateLogicalDevice();
-	CreateDescriptorLayout();
 	CreateCommandPool();
 	CreateDescriptorPool();
+	CreateDescriptorLayout();
 }
 
 void NV::Rendering::Renderer::InitVulkan()
@@ -1092,7 +1091,7 @@ void NV::Rendering::Renderer::CreateCommandBuffers()
 
 			vkCmdBindIndexBuffer(m_commandBuffers[i], m_indexBuffer, 0, VK_INDEX_TYPE_UINT32);
 
-			vkCmdBindDescriptorSets(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipelineLayout, 0, 1, m_descriptorSets.data(), 0, nullptr);
+			//vkCmdBindDescriptorSets(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipelineLayout, 0, 1, m_descriptorSets.data(), 0, nullptr);
 
 			vkCmdDrawIndexed(m_commandBuffers[i], static_cast<uint32_t>(m_indices.size()), 1, 0, 0, 0);
 		}

@@ -134,7 +134,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
-    <IncludePath>C:\Users\noah.forberich\Documents\Visual Studio 2017\Projects\Novin\Core\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
