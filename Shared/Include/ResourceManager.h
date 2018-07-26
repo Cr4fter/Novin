@@ -29,6 +29,7 @@ namespace NV
 			ResourceManager(const std::string& dirPath);
 			void Init();
 			const aiScene* GetScene(const uint32_t& index);
+			NV::IRendering::RawTexData GetTexData(const uint32_t& index);
 			void RemoveScene(const uint32_t& index);
 			void RemoveTexture(const uint32_t& index);
 		private: 

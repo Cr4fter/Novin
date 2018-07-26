@@ -32,15 +32,31 @@ TEST(ResourceLoader, LoadCheck)
 
 	NV::IRendering::RawTexData data = resLoader.LoadTexture("../Demoproject//textures//default.jpg");
 	EXPECT_TRUE(data.Pixels != nullptr);
-
 }
+
+NV::Resources::ResourceManager* resManager = new NV::Resources::ResourceManager("../Demoproject");
 
 TEST(ResourceManager, StoreCheck)
 {
-	NV::Resources::ResourceManager* resManager = new NV::Resources::ResourceManager("../Demoproject");
 	resManager->Init();
 	const aiScene* scene = new aiScene();
-	scene = resManager->GetScene(1);
-	EXPECT_TRUE(scene != nullptr);
+	scene = resManager->GetScene(0);
+	EXPECT_TRUE(scene);
 
+	NV::IRendering::RawTexData texData = resManager->GetTexData(0);
+	EXPECT_TRUE(texData.Pixels);
 }
+
+TEST(ResourceManager, RemoveCheck)
+{
+	resManager->RemoveScene(0);
+	const aiScene* scene = resManager->GetScene(0);
+	EXPECT_FALSE(scene);
+
+	resManager->RemoveTexture(0);
+	NV::IRendering::RawTexData texData = resManager->GetTexData(0);
+	EXPECT_FALSE(texData.Pixels);
+
+	delete resManager;
+}
+

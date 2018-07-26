@@ -18,6 +18,11 @@ const aiScene * NV::Resources::ResourceManager::GetScene(const uint32_t & index)
 	return m_scenes[index];
 }
 
+NV::IRendering::RawTexData NV::Resources::ResourceManager::GetTexData(const uint32_t & index)
+{
+	return m_textures[index];
+}
+
 void NV::Resources::ResourceManager::LoadFilesInDir(const std::string& dirPath)
 {
 	const stdfs::directory_iterator end{};
@@ -46,9 +51,9 @@ void NV::Resources::ResourceManager::IdentifyResource(const std::string & filePa
 		StoreScene(m_resLoader->LoadMesh(filePath));
 		return;
 	}
-	if (ext == "png" || ext == "tga")
+	if (ext == "PNG" || ext == "tga") // TODO: Make this more flexible
 	{
-
+		StoreTexture(m_resLoader->LoadTexture(filePath));
 		return;
 	}
 }
