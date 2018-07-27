@@ -113,12 +113,20 @@ void NV::Core::Engine::Teardown()
 void NV::Core::Engine::link_Setup_renderer()
 {
     hGetProcIDDLL = LoadLibrary(L"Renderer.dll");
+    std::cout << HRESULT_FROM_WIN32(GetLastError()) << "\n";
 
     if (hGetProcIDDLL == nullptr) {
         throw std::exception("cannot locate Renderer.dll");
     }
-
-    const GetRenderingInstance GetRenderer = reinterpret_cast<GetRenderingInstance>(GetProcAddress(hGetProcIDDLL, "GetRenderer"));
-
-    m_Renderer = GetRenderer();
+    
+    try
+    {
+        const GetRenderingInstance fn_getRenderer = (GetRenderingInstance) GetProcAddress(hGetProcIDDLL, "GetRenderer");
+        m_Renderer = fn_getRenderer();
+    }
+    catch (std::exception e)
+    {
+        std::cout << e.what() << "\n";
+    }
+    
 }
