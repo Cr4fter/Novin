@@ -2,6 +2,15 @@
 #include <string>
 #include <queue>
 
+#ifdef NV_BUILD_STATIC
+#    define NV_EXPORT 
+#else 
+#ifdef NV_BUILD_DLL
+#    define NV_EXPORT __declspec(dllexport)
+#else 
+#    define NV_EXPORT __declspec(dllimport)
+#endif
+#endif
 namespace NV
 {
     namespace Debug
@@ -16,94 +25,26 @@ namespace NV
         {
             LogSeverity Severity;
             std::string Message;
-        };
-
-        class Log
+        }; 
+        class NV_EXPORT Log
         {
-            static Log* m_LogInstance;
             std::queue<LogMessageStruct*> m_MessageQueue;
 
         public:
 
-            static Log& GetLogInstance()
-            {
-                return *m_LogInstance;
-            }
-            void SetUpLogInstance()
-            {
-                m_LogInstance = this;
-            }
+            static Log& GetLogInstance();
+            void SetUpLogInstance();
 
-            static void LogMessage(std::string Message)
-            {
-                m_LogInstance->LogMessageI(Message);
-            }
-            static void LogWarning(std::string Message)
-            {
-                m_LogInstance->LogWarningI(Message);
-            }
-            static void LogError(std::string Message)
-            {
-                m_LogInstance->LogErrorI(Message);
-            }
+            static void LogMessage(std::string Message);
+            static void LogWarning(std::string Message);
+            static void LogError(std::string Message);
 
-            void LogMessageI(std::string Message)
-            {
-                LogMessageStruct* msg = new LogMessageStruct;
-                msg->Message = Message;
-                msg->Severity = LogSeverity::Message;
+            void LogMessageI(std::string Message);
+            void LogWarningI(std::string Message);
+            void LogErrorI(std::string Message);
 
-                m_MessageQueue.push(msg);
-            }
-            void LogWarningI(std::string Message)
-            {
-                LogMessageStruct* msg = new LogMessageStruct;
-                msg->Message = Message;
-                msg->Severity = LogSeverity::Warning;
-
-                m_MessageQueue.push(msg);
-            }
-            void LogErrorI(std::string Message)
-            {
-                LogMessageStruct* msg = new LogMessageStruct;
-                msg->Message = Message;
-                msg->Severity = Error;
-
-                m_MessageQueue.push(msg);
-            }
-
-            static void HandleUpdate()
-            {
-                if (m_LogInstance == nullptr)
-                {
-                    throw std::exception("Loginstance was not setup!");
-                }
-                m_LogInstance->HandleUpdateI();
-            }
-            void HandleUpdateI()
-            {
-                while (!m_MessageQueue.empty())
-                {
-                    LogMessageStruct* curmsg = m_MessageQueue.front();
-                    m_MessageQueue.pop();
-                    switch (curmsg->Severity)
-                    {
-                    case Message:
-                        printf("Message - %s\n", curmsg->Message.c_str());
-                        break;
-                    case Warning:
-                        printf("Warning - %s\n", curmsg->Message.c_str());
-                        break;
-                    case Error:
-                        printf("Error - %s\n", curmsg->Message.c_str());
-                        break;
-                    default:
-                        printf("Unknown Severity - %s\n", curmsg->Message.c_str());
-                    }
-                    delete curmsg;
-                }
-            }
+            static void HandleUpdate();
+            void HandleUpdateI();
         };
-        Log* Log::m_LogInstance = nullptr;
     }
 }

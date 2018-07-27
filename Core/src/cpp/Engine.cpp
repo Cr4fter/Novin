@@ -63,16 +63,17 @@ void NV::Core::Engine::Run()
     while (m_EngineState->GetIsRunning())
     {
         auto frameStart = Clock::now();
+        
         Debug::Log::HandleUpdate();
         m_Physics->Update(DeltaTime);
         m_Scene->Update();
+        //m_Renderer->Run(); //ReEnable when the renderer is able to run!
+        m_Audio->Update();
 
-        //TODO Update Engine Systems(PhysicsEngine, Audio)
         float ElapsedTime = (Clock::now() - frameStart).count() / 1000000.0f;
         if (ElapsedTime < 16)
         {
             float sleepingDif = 16.0f - ElapsedTime;
-            //printf("Frame Took %f miliseconds! Sleeping for %f ms\n", ElapsedTime, sleepingDif);
             std::chrono::duration<float, std::milli> tmp(sleepingDif);
             std::this_thread::sleep_for(tmp);
         }
@@ -86,23 +87,46 @@ void NV::Core::Engine::Teardown()
     {
         throw std::exception("Engine Was not Initialized!");
     }
+    m_Initialized = false;
     printf("Engine Teardown\n");
 
     m_Scene->Teardown();
     delete m_Scene;
 
-    //TODO Teardown everything else in reverse order!
+    m_Audio->Teardown();
+    delete m_Audio;
+
+    m_Physics->Teardown();
+    delete m_Physics;
+
+    m_Renderer->Release();
+    delete m_Renderer;
+
+    m_ThreadPool->Teardown();
+    delete m_ThreadPool;
+
+    delete m_EngineState;
+
+    Debug::Log::HandleUpdate();
 }
 
 void NV::Core::Engine::link_Setup_renderer()
 {
     hGetProcIDDLL = LoadLibrary(L"Renderer.dll");
+    std::cout << HRESULT_FROM_WIN32(GetLastError()) << "\n";
 
     if (hGetProcIDDLL == nullptr) {
         throw std::exception("cannot locate Renderer.dll");
     }
-
-    const GetRenderingInstance GetRenderer = reinterpret_cast<GetRenderingInstance>(GetProcAddress(hGetProcIDDLL, "GetRenderer"));
-
-    m_Renderer = GetRenderer();
+    
+    try
+    {
+        const GetRenderingInstance fn_getRenderer = (GetRenderingInstance) GetProcAddress(hGetProcIDDLL, "GetRenderer");
+        m_Renderer = fn_getRenderer();
+    }
+    catch (std::exception e)
+    {
+        std::cout << e.what() << "\n";
+    }
+    
 }

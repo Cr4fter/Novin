@@ -23,6 +23,8 @@ namespace NV
             Threading::ThreadPool* m_ThreadPool = nullptr;
         public:
             void Initialize(Core::EngineState*, Threading::ThreadPool*);
+            void Update();
+            void Teardown();
         };
     }
 }
