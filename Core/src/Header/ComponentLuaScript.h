@@ -15,7 +15,8 @@ namespace NV
         {
         private:
             lua_State * m_LuaInstance = nullptr;
-
+            bool m_SkipUpdate = false;
+            bool m_Started = false;
         public:
 
             // Geerbt über IComponent

@@ -8,3 +8,11 @@ void NV::Audio::Audio::Initialize(Core::EngineState* engineState, Threading::Thr
     m_ThreadPool = tpool;
     printf("Audio Initialized!\n");
 }
+
+void NV::Audio::Audio::Update()
+{
+}
+
+void NV::Audio::Audio::Teardown()
+{
+}
