@@ -44,6 +44,7 @@ namespace NV
 		};
 
 		struct ShaderPack {
+			std::string ShaderName;
 			std::vector<char> VertexShader; 
 			std::vector<char> FragmentShader;
 			uint32_t RendererIndex;

@@ -28,21 +28,21 @@ NV::Rendering::Renderer::Renderer()
 
 void NV::Rendering::Renderer::Init()
 {
-    glfwInit();
-    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-    m_pWnd = glfwCreateWindow(WIDTH, HEIGHT, "Muhahaha", NULL, NULL);
-
 	printf("Init VulKan Renderer\n");
 
+	InitWindow();
 	InitDevices();
-	//InitVulkan();
+	InitVulkan();
 
 	printf("Vulkan successfully instantiated");
 }
 
-void NV::Rendering::Renderer::Run()
+int NV::Rendering::Renderer::Run()
 {
+	//glfwPollEvents();
 	DrawFrame();
+	//return glfwWindowShouldClose(m_pWnd);
+	return 1;
 }
 
 void NV::Rendering::Renderer::ApplyRawMeshData(NV::IRendering::RawMeshData & meshData)
@@ -50,9 +50,39 @@ void NV::Rendering::Renderer::ApplyRawMeshData(NV::IRendering::RawMeshData & mes
 	ComputeMeshData(meshData);
 }
 
+uint32_t NV::Rendering::Renderer::RegisterShader(const NV::IRendering::ShaderPack & shaderPack)
+{
+	VkShaderModuleCreateInfo vertCreateInfo = {};
+	vertCreateInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	vertCreateInfo.codeSize = shaderPack.VertexShader.size();
+	vertCreateInfo.pCode = reinterpret_cast<const uint32_t*>(shaderPack.VertexShader.data());
+
+	VkShaderModuleCreateInfo fragCreateInfo = {};
+	fragCreateInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	fragCreateInfo.codeSize = shaderPack.FragmentShader.size();
+	fragCreateInfo.pCode = reinterpret_cast<const uint32_t*>(shaderPack.FragmentShader.data());
+
+	std::vector<VkShaderModuleCreateInfo> createInfos = { vertCreateInfo, fragCreateInfo };
+
+	VkShaderModule shaderModule;
+	if (vkCreateShaderModule(m_logicalDevice, createInfos.data(), nullptr, &shaderModule) != VK_SUCCESS) {
+		throw std::runtime_error("failed to create shader module");
+	}
+	return m_storage->StoreShader(shaderModule);
+}
+
 void NV::Rendering::Renderer::Release()
 {
 	Cleanup();
+}
+
+void NV::Rendering::Renderer::InitWindow()
+{
+	glfwInit();
+	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+	m_pWnd = glfwCreateWindow(WIDTH, HEIGHT, "Muhahaha", nullptr, nullptr);
+
 }
 
 void NV::Rendering::Renderer::InitDevices()
@@ -62,14 +92,15 @@ void NV::Rendering::Renderer::InitDevices()
 	CreateSurface();
 	PickPhysicalDevice();
 	CreateLogicalDevice();
-	CreateCommandPool();
-	CreateDescriptorPool();
-	CreateDescriptorLayout();
 }
 
 void NV::Rendering::Renderer::InitVulkan()
 {
+	CreateDefaultShader();
 	CreateSwapChain();
+	CreateCommandPool();
+	CreateDescriptorPool();
+	CreateDescriptorLayout();
 	CreateImageViews();
 	CreateRenderPass();
 	CreateDepthResources();
@@ -298,7 +329,7 @@ bool NV::Rendering::Renderer::CheckDeviceExtensionSupport(VkPhysicalDevice devic
 
 NV::Rendering::SwapChainSupportDetails NV::Rendering::Renderer::QuerySwapChainSupport(VkPhysicalDevice device)
 {
-	SwapChainSupportDetails details;
+	SwapChainSupportDetails details = {};
 
 	vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, m_surface, &details.Capabilites);
 
@@ -458,27 +489,6 @@ uint32_t NV::Rendering::Renderer::FindMemoryType(uint32_t typeFilter, VkMemoryPr
 	throw std::runtime_error("failed to find suitable memory type!");
 }
 
-VkShaderModule NV::Rendering::Renderer::CreateShaderModule(NV::IRendering::ShaderPack pack)
-{
-	VkShaderModuleCreateInfo vertCreateInfo = {};
-	vertCreateInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
-	vertCreateInfo.codeSize = pack.VertexShader.size();
-	vertCreateInfo.pCode = reinterpret_cast<const uint32_t*>(pack.VertexShader.data());
-
-	VkShaderModuleCreateInfo fragCreateInfo = {};
-	fragCreateInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO; 
-	fragCreateInfo.codeSize = pack.FragmentShader.size();
-	fragCreateInfo.pCode = reinterpret_cast<const uint32_t*>(pack.FragmentShader.data());
-
-	std::vector<VkShaderModuleCreateInfo> createInfos = { vertCreateInfo, fragCreateInfo };
-
-	VkShaderModule shaderModule;
-	if (vkCreateShaderModule(m_logicalDevice, createInfos.data(), nullptr, &shaderModule) != VK_SUCCESS) {
-		throw std::runtime_error("failed to create shader module");
-	}
-	return shaderModule;
-}
-
 void NV::Rendering::Renderer::TransitionImageLayout(VkImage image, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout, uint32_t mipLevels)
 {
 	VkCommandBuffer commandBuffer = BeginSingleTimeCommand();
@@ -583,7 +593,7 @@ bool NV::Rendering::Renderer::HasStencilComponent(VkFormat format)
 
 void NV::Rendering::Renderer::RecreateSwapChain()
 {
-	int width, height;
+	int width = 1600, height = 800;
 	glfwGetWindowSize(m_pWnd, &width, &height);
 	if (width == 0 || height == 0) return;
 
@@ -605,7 +615,7 @@ void NV::Rendering::Renderer::SetupDebugCallback()
 
 	VkDebugReportCallbackCreateInfoEXT createInfo = {};
 	createInfo.sType = VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT;
-	createInfo.flags = VK_DEBUG_REPORT_ERROR_BIT_EXT | VK_DEBUG_REPORT_WARNING_BIT_EXT;
+	createInfo.flags = VK_DEBUG_REPORT_ERROR_BIT_EXT | VK_DEBUG_REPORT_WARNING_BIT_EXT | VK_DEBUG_REPORT_INFORMATION_BIT_EXT | VK_DEBUG_REPORT_DEBUG_BIT_EXT;
 	createInfo.pfnCallback = DebugCallBack;
 
 	if (CreateDebugReportCallbackEXT(m_vkInstance, &createInfo, nullptr, &m_callback) != VK_SUCCESS) {
@@ -753,10 +763,43 @@ void NV::Rendering::Renderer::CreateDescriptorPool()
 	poolInfo.pPoolSizes = poolSizes.data();
 	poolInfo.maxSets = 4;
 
+
 	if (vkCreateDescriptorPool(m_logicalDevice, &poolInfo, nullptr, &m_descriptorPool) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create descriptor pool!");
 	}
 }
+
+void NV::Rendering::Renderer::CreateDefaultShader()
+{
+	std::string vert = { "#version 450 #extension GL_ARB_separate_shader_objects : enable out gl_PerVertex{vec4 gl_Position;};void main() {gl_Position = vec4(1,1,1,1);}" };
+	std::string frag = { "#version 450 #extension GL_ARB_separate_shader_objects : enablelayout(location = 0) out vec4 outColor;void main() {outColor = vec4(1,1,1,1);}" };
+	int result = ShInitialize();
+	glslang::TShader* vertShader = new glslang::TShader(EShLanguage::EShLangVertex);
+	ShHandle handle = nullptr; 
+	const char* strings[2] = { vert.data(), frag.data() };
+	int sizes[2] = { vert.size(), frag.size() };
+	TBuiltInResource res; 
+	ShCompile(handle, strings, 2, sizes, EShOptimizationLevel::EShOptNone, &res, NULL);
+
+	VkShaderModuleCreateInfo vertCreateInfo = {};
+	vertCreateInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	vertCreateInfo.codeSize = sizeof(vert);
+	vertCreateInfo.pCode = reinterpret_cast<const uint32_t*>(vert.data());
+
+	VkShaderModuleCreateInfo fragCreateInfo = {};
+	fragCreateInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	fragCreateInfo.codeSize = sizeof(frag);
+	fragCreateInfo.pCode = reinterpret_cast<const uint32_t*>(frag.data());
+
+	std::vector<VkShaderModuleCreateInfo> createInfos = { vertCreateInfo, fragCreateInfo };
+
+	VkShaderModule shaderModule;
+	if (vkCreateShaderModule(m_logicalDevice, createInfos.data(), nullptr, &shaderModule) != VK_SUCCESS) {
+		throw std::runtime_error("failed to create shader module");
+	}
+	m_storage->StoreShader(shaderModule);
+}
+
 
 void NV::Rendering::Renderer::CreateSwapChain()
 {
@@ -797,7 +840,6 @@ void NV::Rendering::Renderer::CreateSwapChain()
 	createInfo.presentMode = presentMode;
 	createInfo.clipped = VK_TRUE;
 	createInfo.oldSwapchain = VK_NULL_HANDLE;
-
 	if (vkCreateSwapchainKHR(m_logicalDevice, &createInfo, nullptr, &m_swapChain) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create swap chain!");
 	}
@@ -878,13 +920,6 @@ void NV::Rendering::Renderer::CreateRenderPass()
 	}
 }
 
-void NV::Rendering::Renderer::CreateShaders(std::vector<NV::IRendering::ShaderPack>& shaders)
-{
-	for (NV::IRendering::ShaderPack shaderpack : shaders)
-	{
-		shaderpack.RendererIndex = m_storage->StoreShader(CreateShaderModule(shaderpack));
-	}
-}
 void NV::Rendering::Renderer::CreateGraphicsPipelineLayout(VkShaderModule shaderModule)
 {
 	VkPipelineShaderStageCreateInfo vertShaderStageInfo = {};
@@ -977,9 +1012,11 @@ void NV::Rendering::Renderer::CreateGraphicsPipelineLayout(VkShaderModule shader
 	pipelineLayoutInfo.setLayoutCount = 1;
 	pipelineLayoutInfo.pSetLayouts = &m_descriptorSetLayout;
 
-	if (vkCreatePipelineLayout(m_logicalDevice, &pipelineLayoutInfo, nullptr, &m_pipelineLayout) != VK_SUCCESS) {
+	VkPipelineLayout pipelineLayout;
+	if (vkCreatePipelineLayout(m_logicalDevice, &pipelineLayoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create pipeline layout!");
 	}
+	m_storage->StoreGraphicsPipeline(pipelineLayout);
 }
 
 void NV::Rendering::Renderer::CreateGraphicsPipeline(	const VkPipelineShaderStageCreateInfo * shaderStages,				const VkPipelineVertexInputStateCreateInfo * vertexInputInfo, 
@@ -1082,22 +1119,17 @@ void NV::Rendering::Renderer::CreateCommandBuffers()
 
 		vkCmdBeginRenderPass(m_commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 
-		vkCmdBindPipeline(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, m_graphicsPipeline);
-
 		VkDeviceSize offsets[] = { 0 };
-		if (!m_vertexBuffers.empty())
-		{
-			vkCmdBindVertexBuffers(m_commandBuffers[i], 0, 1, m_vertexBuffers.data(), offsets);
+		//vkCmdBindPipeline(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, m_graphicsPipeline);
 
-			vkCmdBindIndexBuffer(m_commandBuffers[i], m_indexBuffer, 0, VK_INDEX_TYPE_UINT32);
+		//vkCmdBindVertexBuffers(m_commandBuffers[i], 0, 1, m_vertexBuffers.data(), offsets);
 
-			//vkCmdBindDescriptorSets(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipelineLayout, 0, 1, m_descriptorSets.data(), 0, nullptr);
+		//vkCmdBindIndexBuffer(m_commandBuffers[i], m_indexBuffer, 0, VK_INDEX_TYPE_UINT32);
 
-			vkCmdDrawIndexed(m_commandBuffers[i], static_cast<uint32_t>(m_indices.size()), 1, 0, 0, 0);
-		}
-		else {
-			vkCmdDraw(m_commandBuffers[i], 0, 1, 0, 0);
-		}
+		//vkCmdBindDescriptorSets(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipelineLayout, 0, 1, m_descriptorSets.data(), 0, nullptr);
+
+		vkCmdDrawIndexed(m_commandBuffers[i], static_cast<uint32_t>(m_indices.size()), 1, 0, 0, 0);
+
 		vkCmdEndRenderPass(m_commandBuffers[i]);
 
 		if (vkEndCommandBuffer(m_commandBuffers[i]) != VK_SUCCESS) {
@@ -1108,6 +1140,24 @@ void NV::Rendering::Renderer::CreateCommandBuffers()
 
 void NV::Rendering::Renderer::CreateSyncObjects()
 {
+	m_imageAvailableSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
+	m_renderFinishedSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
+	m_inFlightFences.resize(MAX_FRAMES_IN_FLIGHT);
+
+	VkSemaphoreCreateInfo semaphoreInfo = {};
+	semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
+
+	VkFenceCreateInfo fenceInfo = {};
+	fenceInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
+	fenceInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
+
+	for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
+		if (vkCreateSemaphore(m_logicalDevice, &semaphoreInfo, nullptr, &m_imageAvailableSemaphores[i]) != VK_SUCCESS ||
+			vkCreateSemaphore(m_logicalDevice, &semaphoreInfo, nullptr, &m_renderFinishedSemaphores[i]) != VK_SUCCESS ||
+			vkCreateFence(m_logicalDevice, &fenceInfo, nullptr, &m_inFlightFences[i]) != VK_SUCCESS) {
+			throw std::runtime_error("failed to create sync objects for a frame!");
+		}
+	}
 }
 
 void NV::Rendering::Renderer::CleanupSwapChain()
@@ -1144,7 +1194,7 @@ void NV::Rendering::Renderer::Cleanup()
 	vkDestroyInstance(m_vkInstance, nullptr);
 }
 
-VKAPI_ATTR VkBool32 VKAPI_CALL NV::Rendering::Renderer::DebugCallBack(VkDebugReportFlagsEXT flags, VkDebugReportObjectTypeEXT objType, uint64_t obj, size_t location, int32_t code, const char * layerPrefix, const char * msg, void * userData)
+VKAPI_ATTR VkBool32 VKAPI_CALL NV::Rendering::DebugCallBack(VkDebugReportFlagsEXT flags, VkDebugReportObjectTypeEXT objType, uint64_t obj, size_t location, int32_t code, const char * layerPrefix, const char * msg, void * userData)
 {
 	std::cerr << "validation layer: " << msg << std::endl;
 

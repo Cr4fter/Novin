@@ -23,6 +23,7 @@ namespace NV
 
 		static std::string GetExtensionOfFile(const std::string& str);
 
+		static std::string GetFileName(const std::string& filePath);
 	}
 }
 #include "BaseFunctions.hpp"

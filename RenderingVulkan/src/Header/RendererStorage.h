@@ -13,15 +13,18 @@ namespace NV
 			VkDevice m_logicalDevice;
 			std::vector<MeshData> m_meshes;
 			std::vector<VkShaderModule> m_shader;
+			std::vector<VkPipelineLayout> m_pipelineLayouts;
 		public: 
 			RendererStorage(VkDevice& logicalDevice);
 			uint32_t StoreMesh(MeshData mesh);
-			MeshData GetMesh(const uint32_t& index);
+			MeshData GetMesh(const uint32_t& index) const;
 			bool RemoveMesh(const uint32_t& index);
 			uint32_t StoreShader(VkShaderModule shaderModule);
-			VkShaderModule GetShader(const uint32_t& index);
+			VkShaderModule GetShader(const uint32_t& index) const;
 			bool RemoveShader(const uint32_t& index); 
-
+			uint32_t StoreGraphicsPipeline(VkPipelineLayout pipelineLayout);
+			VkPipelineLayout GetPipeline(const uint32_t& index) const;
+			bool RemovePipeline(const uint32_t& index); 
 		};
 	}
 }
