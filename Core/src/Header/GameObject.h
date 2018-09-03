@@ -19,6 +19,7 @@ namespace NV
 
             void AddComponent(IComponent* component);
             std::string GetName();
+            TransformComponent* GetTransform();
         };
     }
 }
