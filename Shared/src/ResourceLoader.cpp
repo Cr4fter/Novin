@@ -52,10 +52,10 @@ void NV::Resources::ResourceLoader::IncludeShaderInPack(NV::IRendering::ShaderPa
 {
 	if (ext == "vert")
 	{
-		pack.VertexShader = shader;
+		pack.VertexShader.ShaderCode = shader.data();
 	}
 	if (ext == "frag")
 	{
-		pack.FragmentShader = shader;
+		pack.FragShader.ShaderCode = shader.data();
 	}
 }

@@ -43,6 +43,13 @@
 
 #include <algorithm>
 
+#ifdef min
+#undef min 
+#endif
+#ifdef max
+#undef max
+#endif
+
 namespace glslang {
 
 // This is used to mean there is no size yet (unsized), it is waiting to get a size from somewhere else.

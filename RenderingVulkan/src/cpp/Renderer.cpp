@@ -1,5 +1,10 @@
-#include "Renderer.h"
+#include "../Header/Renderer.h"
 #include <cstdio>
+
+const char* vMain = "VertMain";
+const char* fMain = "FragMain";
+
+const uint32_t DefaultShader = 0;
 
 NV::Rendering::Renderer::Renderer()
 	:m_vkInstance(VK_NULL_HANDLE)
@@ -20,7 +25,6 @@ NV::Rendering::Renderer::Renderer()
 	, m_depthImageMemory(VK_NULL_HANDLE)
 	, m_indexBuffer(VK_NULL_HANDLE)
 	, m_currentFrame(0)
-	, m_storage(nullptr)
 {
 	m_swapChainImageFormat = {};
 	m_swapChainExtent = {};
@@ -39,10 +43,9 @@ void NV::Rendering::Renderer::Init()
 
 int NV::Rendering::Renderer::Run()
 {
-	//glfwPollEvents();
+	glfwPollEvents();
 	DrawFrame();
-	//return glfwWindowShouldClose(m_pWnd);
-	return 1;
+	return glfwWindowShouldClose(m_pWnd);
 }
 
 void NV::Rendering::Renderer::ApplyRawMeshData(NV::IRendering::RawMeshData & meshData)
@@ -54,13 +57,13 @@ uint32_t NV::Rendering::Renderer::RegisterShader(const NV::IRendering::ShaderPac
 {
 	VkShaderModuleCreateInfo vertCreateInfo = {};
 	vertCreateInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
-	vertCreateInfo.codeSize = shaderPack.VertexShader.size();
-	vertCreateInfo.pCode = reinterpret_cast<const uint32_t*>(shaderPack.VertexShader.data());
+	vertCreateInfo.codeSize = shaderPack.VertexShader.ShaderSize;
+	vertCreateInfo.pCode = reinterpret_cast<const uint32_t*>(shaderPack.VertexShader.ShaderSize);
 
 	VkShaderModuleCreateInfo fragCreateInfo = {};
 	fragCreateInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
-	fragCreateInfo.codeSize = shaderPack.FragmentShader.size();
-	fragCreateInfo.pCode = reinterpret_cast<const uint32_t*>(shaderPack.FragmentShader.data());
+	fragCreateInfo.codeSize = shaderPack.FragShader.ShaderSize;
+	fragCreateInfo.pCode = reinterpret_cast<const uint32_t*>(shaderPack.FragShader.ShaderSize);
 
 	std::vector<VkShaderModuleCreateInfo> createInfos = { vertCreateInfo, fragCreateInfo };
 
@@ -82,7 +85,6 @@ void NV::Rendering::Renderer::InitWindow()
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 	m_pWnd = glfwCreateWindow(WIDTH, HEIGHT, "Muhahaha", nullptr, nullptr);
-
 }
 
 void NV::Rendering::Renderer::InitDevices()
@@ -96,13 +98,16 @@ void NV::Rendering::Renderer::InitDevices()
 
 void NV::Rendering::Renderer::InitVulkan()
 {
-	CreateDefaultShader();
+	m_storage = std::unique_ptr<RendererStorage>(new RendererStorage(m_logicalDevice));
+	m_shaderMgr = std::unique_ptr<ShaderManager>(new ShaderManager(m_storage.get()));
+	m_shaderMgr->Init();
 	CreateSwapChain();
 	CreateCommandPool();
 	CreateDescriptorPool();
 	CreateDescriptorLayout();
 	CreateImageViews();
 	CreateRenderPass();
+	CreateGraphicsPipelineLayout(m_storage->GetShader(0));
 	CreateDepthResources();
 	CreateFramebuffers();
 	CreateCommandBuffers();
@@ -769,38 +774,6 @@ void NV::Rendering::Renderer::CreateDescriptorPool()
 	}
 }
 
-void NV::Rendering::Renderer::CreateDefaultShader()
-{
-	std::string vert = { "#version 450 #extension GL_ARB_separate_shader_objects : enable out gl_PerVertex{vec4 gl_Position;};void main() {gl_Position = vec4(1,1,1,1);}" };
-	std::string frag = { "#version 450 #extension GL_ARB_separate_shader_objects : enablelayout(location = 0) out vec4 outColor;void main() {outColor = vec4(1,1,1,1);}" };
-	int result = ShInitialize();
-	glslang::TShader* vertShader = new glslang::TShader(EShLanguage::EShLangVertex);
-	ShHandle handle = nullptr; 
-	const char* strings[2] = { vert.data(), frag.data() };
-	int sizes[2] = { vert.size(), frag.size() };
-	TBuiltInResource res; 
-	ShCompile(handle, strings, 2, sizes, EShOptimizationLevel::EShOptNone, &res, NULL);
-
-	VkShaderModuleCreateInfo vertCreateInfo = {};
-	vertCreateInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
-	vertCreateInfo.codeSize = sizeof(vert);
-	vertCreateInfo.pCode = reinterpret_cast<const uint32_t*>(vert.data());
-
-	VkShaderModuleCreateInfo fragCreateInfo = {};
-	fragCreateInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
-	fragCreateInfo.codeSize = sizeof(frag);
-	fragCreateInfo.pCode = reinterpret_cast<const uint32_t*>(frag.data());
-
-	std::vector<VkShaderModuleCreateInfo> createInfos = { vertCreateInfo, fragCreateInfo };
-
-	VkShaderModule shaderModule;
-	if (vkCreateShaderModule(m_logicalDevice, createInfos.data(), nullptr, &shaderModule) != VK_SUCCESS) {
-		throw std::runtime_error("failed to create shader module");
-	}
-	m_storage->StoreShader(shaderModule);
-}
-
-
 void NV::Rendering::Renderer::CreateSwapChain()
 {
 	SwapChainSupportDetails swapChainSupport = QuerySwapChainSupport(m_physicalDevice);
@@ -920,19 +893,81 @@ void NV::Rendering::Renderer::CreateRenderPass()
 	}
 }
 
-void NV::Rendering::Renderer::CreateGraphicsPipelineLayout(VkShaderModule shaderModule)
+void NV::Rendering::Renderer::CreateGraphicsPipelineLayout(const VkShaderModule& shaderModule)
 {
+	/*std::ifstream file("../Demoproject/shaders//vert.spv", std::ios::ate | std::ios::binary);
+
+	if (!file.is_open()) {
+		throw std::runtime_error("failed to open file!");
+	}
+
+	size_t fileSize = (size_t)file.tellg();
+	std::vector<char> buffer(fileSize);
+
+	file.seekg(0);
+	file.read(buffer.data(), fileSize);
+
+	file.close();
+
+	std::ifstream file2("../Demoproject/shaders//frag.spv", std::ios::ate | std::ios::binary);
+
+	if (!file2.is_open()) {
+		throw std::runtime_error("failed to open file!");
+	}
+
+	size_t fileSize2 = (size_t)file2.tellg();
+	std::vector<char> buffer2(fileSize2);
+
+	file2.seekg(0);
+	file2.read(buffer2.data(), fileSize2);
+
+	file2.close();
+
+	VkShaderModuleCreateInfo createInfo = {};
+	createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	createInfo.codeSize = buffer.size();
+	createInfo.pCode = reinterpret_cast<const uint32_t*>(buffer.data());
+
+	VkShaderModuleCreateInfo createInfo2 = {};
+	createInfo2.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	createInfo2.codeSize = buffer2.size();
+	createInfo2.pCode = reinterpret_cast<const uint32_t*>(buffer2.data());
+
+	VkShaderModule newShaderModule;
+	if (vkCreateShaderModule(m_logicalDevice, &createInfo, nullptr, &newShaderModule) != VK_SUCCESS) {
+		throw std::runtime_error("failed to create shader module!");
+	}
+
+	VkShaderModule newShaderModule2; 
+	if (vkCreateShaderModule(m_logicalDevice, &createInfo2, nullptr, &newShaderModule2) != VK_SUCCESS)
+	{
+		throw std::runtime_error("failed to create shader module!");
+	}
+
 	VkPipelineShaderStageCreateInfo vertShaderStageInfo = {};
 	vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
 	vertShaderStageInfo.stage = VK_SHADER_STAGE_VERTEX_BIT;
-	vertShaderStageInfo.module = shaderModule;
-	vertShaderStageInfo.pName = "VertMain";
+	vertShaderStageInfo.module = newShaderModule;
+	vertShaderStageInfo.pName = "main";
 
 	VkPipelineShaderStageCreateInfo fragShaderStageInfo = {};
 	fragShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
 	fragShaderStageInfo.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
-	fragShaderStageInfo.module = shaderModule;
-	fragShaderStageInfo.pName = "FragMain";
+	fragShaderStageInfo.module = newShaderModule2;
+	fragShaderStageInfo.pName = "main";*/
+	VkPipelineShaderStageCreateInfo vertShaderStageInfo = {};
+	vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+	vertShaderStageInfo.stage = VK_SHADER_STAGE_VERTEX_BIT;
+	vertShaderStageInfo.module = shaderModule;
+	vertShaderStageInfo.pName = m_shaderMgr->GetVertEntry();
+
+	VkPipelineShaderStageCreateInfo fragShaderStageInfo = {};
+	fragShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+	fragShaderStageInfo.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
+	vertShaderStageInfo.module = shaderModule;
+	fragShaderStageInfo.pName = m_shaderMgr->GetFragEntry();
+
+
 
 	VkPipelineShaderStageCreateInfo shaderStages[] = { vertShaderStageInfo, fragShaderStageInfo };
 
@@ -1016,10 +1051,11 @@ void NV::Rendering::Renderer::CreateGraphicsPipelineLayout(VkShaderModule shader
 	if (vkCreatePipelineLayout(m_logicalDevice, &pipelineLayoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create pipeline layout!");
 	}
-	m_storage->StoreGraphicsPipeline(pipelineLayout);
+	m_storage->StoreGraphicsPipelineLayout(pipelineLayout);
+	CreateGraphicsPipeline(shaderStages, &vertexInputInfo, &inputAssembly, &viewportState, &rasterizer, &multisampling, &colorBlending, &depthStencil);
 }
 
-void NV::Rendering::Renderer::CreateGraphicsPipeline(	const VkPipelineShaderStageCreateInfo * shaderStages,				const VkPipelineVertexInputStateCreateInfo * vertexInputInfo, 
+void NV::Rendering::Renderer::CreateGraphicsPipeline(const VkPipelineShaderStageCreateInfo * shaderStages,const VkPipelineVertexInputStateCreateInfo * vertexInputInfo, 
 	const VkPipelineInputAssemblyStateCreateInfo * inputAssembly, const VkPipelineViewportStateCreateInfo * viewportState,
 	const VkPipelineRasterizationStateCreateInfo * rasterizer, const VkPipelineMultisampleStateCreateInfo * multisampling,
 	const VkPipelineColorBlendStateCreateInfo * colorBlending, const VkPipelineDepthStencilStateCreateInfo * depthStencil)
@@ -1035,7 +1071,7 @@ void NV::Rendering::Renderer::CreateGraphicsPipeline(	const VkPipelineShaderStag
 	pipelineInfo.pMultisampleState = multisampling;
 	pipelineInfo.pColorBlendState = colorBlending;
 	pipelineInfo.pDepthStencilState = depthStencil;
-	pipelineInfo.layout = m_pipelineLayout;
+	pipelineInfo.layout = m_storage->GetPipelineLayout(0);
 	pipelineInfo.renderPass = m_renderPass;
 	pipelineInfo.subpass = 0;
 
@@ -1120,7 +1156,7 @@ void NV::Rendering::Renderer::CreateCommandBuffers()
 		vkCmdBeginRenderPass(m_commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 
 		VkDeviceSize offsets[] = { 0 };
-		//vkCmdBindPipeline(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, m_graphicsPipeline);
+		vkCmdBindPipeline(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, m_graphicsPipeline);
 
 		//vkCmdBindVertexBuffers(m_commandBuffers[i], 0, 1, m_vertexBuffers.data(), offsets);
 

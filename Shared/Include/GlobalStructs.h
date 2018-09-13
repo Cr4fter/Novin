@@ -1,8 +1,12 @@
 #pragma once
+#pragma region Internal Includes 
+#include "GlobalEnums.h"
+#pragma endregion //Internal Includes
+#pragma region External Includes
 #include <vector>
-
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
+#pragma endregion //External Includes
 
 namespace NV
 {
@@ -31,10 +35,9 @@ namespace NV
 			int32_t Height; 
 			int32_t TexChannels;
 			void* Pixels;
-			void Release()
+			~RawTexData()
 			{
-				delete Pixels; 
-				delete this;
+				delete Pixels;
 			}
 		};
 
@@ -43,11 +46,21 @@ namespace NV
 			RawTexData NormalData;
 		};
 
+		struct ShaderDesc
+		{
+			const char* ShaderCode;
+			uint32_t ShaderSize;
+			EShaderType Type;
+			EShaderLang Language;
+		};
+
 		struct ShaderPack {
 			std::string ShaderName;
-			std::vector<char> VertexShader; 
-			std::vector<char> FragmentShader;
+			ShaderDesc VertexShader; 
+			ShaderDesc FragShader;
 			uint32_t RendererIndex;
+			EShaderFormat GetFormat() const {
+			}
 		};
 	}
 }

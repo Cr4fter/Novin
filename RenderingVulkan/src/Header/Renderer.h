@@ -4,6 +4,7 @@
 #include "GlobalStructs.h"
 #include "RenderingInternStructs.h"
 #include "RendererStorage.h"
+#include "ShaderManager.h"
 #pragma endregion // Internal Includes
 
 #pragma region External Includes
@@ -18,6 +19,9 @@
 #include "vulkan/libspirv.h"
 #include "Public/ShaderLang.h"
 #include "Include/ResourceLimits.h"
+#include "ResourceLimits.h"
+#include "SPIRV/GlslangToSpv.h"
+#include <fstream>
 #pragma endregion // External Includes
 
 #ifdef min
@@ -34,6 +38,7 @@ namespace NV
 {
     namespace Rendering
     {
+
         struct QueueFamilyIndices {
             int GraphicsFamily = -1;
             int PresentFamily = -1;
@@ -88,7 +93,6 @@ namespace NV
             VkInstance m_vkInstance;
             VkDebugReportCallbackEXT m_callback;
             GLFWwindow* m_pWnd;
-			//HWND m_pWinWnd;
             VkSurfaceKHR m_surface;
             VkPhysicalDevice m_physicalDevice;
             VkDevice m_logicalDevice;
@@ -120,7 +124,8 @@ namespace NV
             std::vector<VkSemaphore> m_renderFinishedSemaphores;
             std::vector<VkFence> m_inFlightFences;
             size_t m_currentFrame;
-            RendererStorage* m_storage;
+            std::unique_ptr<RendererStorage> m_storage;
+			std::unique_ptr<ShaderManager> m_shaderMgr;
         public:
             /**
              * Default Constructor
@@ -204,7 +209,6 @@ namespace NV
 
             /// ----------** Everything what happens while the rendering is in process **------------- 
 
-			void CreateDefaultShader();
             /**
              *  Creates the swap chain which is needed for the graphics pipeline
              */
@@ -220,7 +224,7 @@ namespace NV
 			/**
             * Creates the layout for the graphics pipeline.
             */
-            void CreateGraphicsPipelineLayout(VkShaderModule shaderModule);
+            void CreateGraphicsPipelineLayout(const VkShaderModule& shaderModule);
             /**
              * Creates the graphics pipeline based on the available objects created before
              */

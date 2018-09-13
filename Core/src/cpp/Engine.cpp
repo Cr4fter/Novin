@@ -67,7 +67,7 @@ void NV::Core::Engine::Run()
         Debug::Log::HandleUpdate();
         m_Physics->Update(DeltaTime);
         m_Scene->Update();
-        //m_Renderer->Run(); //ReEnable when the renderer is able to run!
+        m_Renderer->Run(); //ReEnable when the renderer is able to run!
         m_Audio->Update();
 
         float ElapsedTime = (Clock::now() - frameStart).count() / 1000000.0f;

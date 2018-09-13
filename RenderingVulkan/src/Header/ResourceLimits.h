@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2014 LunarG, Inc.
+// Copyright (C) 2016 Google, Inc.
 //
 // All rights reserved.
 //
@@ -15,7 +15,7 @@
 //    disclaimer in the documentation and/or other materials provided
 //    with the distribution.
 //
-//    Neither the name of 3Dlabs Inc. Ltd. nor the names of its
+//    Neither the name of Google Inc. nor the names of its
 //    contributors may be used to endorse or promote products derived
 //    from this software without specific prior written permission.
 //
@@ -32,36 +32,26 @@
 // ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#pragma once
-
-#if defined(_MSC_VER) && _MSC_VER >= 1900
-    #pragma warning(disable : 4464) // relative include path contains '..'
-#endif
-
-#include "Include/intermediate.h"
+#ifndef _STAND_ALONE_RESOURCE_LIMITS_INCLUDED_
+#define _STAND_ALONE_RESOURCE_LIMITS_INCLUDED_
 
 #include <string>
-#include <vector>
 
-#include "Logger.h"
+#include "Include/ResourceLimits.h"
 
 namespace glslang {
 
-struct SpvOptions {
-    SpvOptions() : generateDebugInfo(false), disableOptimizer(true),
-        optimizeSize(false) { }
-    bool generateDebugInfo;
-    bool disableOptimizer;
-    bool optimizeSize;
-};
+	// These are the default resources for TBuiltInResources, used for both
+	//  - parsing this string for the case where the user didn't supply one,
+	//  - dumping out a template for user construction of a config file.
+	extern const TBuiltInResource DefaultTBuiltInResource;
 
-void GetSpirvVersion(std::string&);
-int GetSpirvGeneratorVersion();
-void GlslangToSpv(const glslang::TIntermediate& intermediate, std::vector<unsigned int>& spirv,
-                  SpvOptions* options = nullptr);
-void GlslangToSpv(const glslang::TIntermediate& intermediate, std::vector<unsigned int>& spirv,
-                  spv::SpvBuildLogger* logger, SpvOptions* options = nullptr);
-void OutputSpvBin(const std::vector<unsigned int>& spirv, const char* baseName);
-void OutputSpvHex(const std::vector<unsigned int>& spirv, const char* baseName, const char* varName);
+	// Returns the DefaultTBuiltInResource as a human-readable string.
+	std::string GetDefaultTBuiltInResourceString();
 
-}
+	// Decodes the resource limits from |config| to |resources|.
+	void DecodeResourceLimits(TBuiltInResource* resources, char* config);
+
+}  // end namespace glslang
+
+#endif // _STAND_ALONE_RESOURCE_LIMITS_INCLUDED_

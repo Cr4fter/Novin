@@ -65,6 +65,9 @@
     <ClInclude Include="Include\Log.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Include\GlobalEnums.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Include\ResourceManager.cpp">
