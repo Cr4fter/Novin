@@ -968,8 +968,9 @@ void NV::Rendering::Renderer::CreateGraphicsPipelineLayout(const VkShaderModule&
 	vertShaderStageInfo.module = m_storage->GetShader(1);
 	fragShaderStageInfo.pName = "main";*/
 
-	m_defaultShaderModulepack.VertexShader = newShaderModule; 
-	m_defaultShaderModulepack.FragmentShader = newShaderModule2; 
+	m_defaultShaderModulepack.SetShader(newShaderModule, EVertex); 
+	m_defaultShaderModulepack.SetShader(newShaderModule2, EFragment);
+
 
 	VkPipelineShaderStageCreateInfo shaderStages[] = { vertShaderStageInfo, fragShaderStageInfo };
 

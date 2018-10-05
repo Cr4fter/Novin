@@ -32,7 +32,7 @@ namespace NV
 			{
 				if (PlacedShader&config && config != EShaderType::ENone)
 				{
-					PlacedShader^config;
+					PlacedShader^=config;
 					switch (config)
 					{
 					case EShaderType::EVertex:
