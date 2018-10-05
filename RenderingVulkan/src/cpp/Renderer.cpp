@@ -100,14 +100,15 @@ void NV::Rendering::Renderer::InitVulkan()
 {
 	m_storage = std::unique_ptr<RendererStorage>(new RendererStorage(m_logicalDevice));
 	m_shaderMgr = std::unique_ptr<ShaderManager>(new ShaderManager(m_storage.get()));
-	m_shaderMgr->Init();
+	//m_shaderMgr->Init();
 	CreateSwapChain();
 	CreateCommandPool();
 	CreateDescriptorPool();
 	CreateDescriptorLayout();
 	CreateImageViews();
 	CreateRenderPass();
-	CreateGraphicsPipelineLayout(m_storage->GetShader(0));
+	VkShaderModule module;
+	CreateGraphicsPipelineLayout(module);
 	CreateDepthResources();
 	CreateFramebuffers();
 	CreateCommandBuffers();
@@ -895,7 +896,7 @@ void NV::Rendering::Renderer::CreateRenderPass()
 
 void NV::Rendering::Renderer::CreateGraphicsPipelineLayout(const VkShaderModule& shaderModule)
 {
-	/*std::ifstream file("../Demoproject/shaders//vert.spv", std::ios::ate | std::ios::binary);
+	std::ifstream file("../Demoproject/shaders//vert.spv", std::ios::ate | std::ios::binary);
 
 	if (!file.is_open()) {
 		throw std::runtime_error("failed to open file!");
@@ -954,18 +955,18 @@ void NV::Rendering::Renderer::CreateGraphicsPipelineLayout(const VkShaderModule&
 	fragShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
 	fragShaderStageInfo.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
 	fragShaderStageInfo.module = newShaderModule2;
-	fragShaderStageInfo.pName = "main";*/
-	VkPipelineShaderStageCreateInfo vertShaderStageInfo = {};
+	fragShaderStageInfo.pName = "main";
+	/*VkPipelineShaderStageCreateInfo vertShaderStageInfo = {};
 	vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
 	vertShaderStageInfo.stage = VK_SHADER_STAGE_VERTEX_BIT;
-	vertShaderStageInfo.module = shaderModule;
-	vertShaderStageInfo.pName = m_shaderMgr->GetVertEntry();
+	vertShaderStageInfo.module = m_storage->GetShader(0);
+	vertShaderStageInfo.pName = "main";
 
 	VkPipelineShaderStageCreateInfo fragShaderStageInfo = {};
 	fragShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
 	fragShaderStageInfo.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
-	vertShaderStageInfo.module = shaderModule;
-	fragShaderStageInfo.pName = m_shaderMgr->GetFragEntry();
+	vertShaderStageInfo.module = m_storage->GetShader(1);
+	fragShaderStageInfo.pName = "main";*/
 
 
 
@@ -976,7 +977,7 @@ void NV::Rendering::Renderer::CreateGraphicsPipelineLayout(const VkShaderModule&
 
 	VkPipelineVertexInputStateCreateInfo vertexInputInfo = {};
 	vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-	vertexInputInfo.vertexBindingDescriptionCount = 1;
+	vertexInputInfo.vertexBindingDescriptionCount = 2;
 	vertexInputInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(attributeDescription.size());
 	vertexInputInfo.pVertexBindingDescriptions = &bindingDescription;
 	vertexInputInfo.pVertexAttributeDescriptions = attributeDescription.data();
