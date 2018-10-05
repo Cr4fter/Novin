@@ -33,6 +33,9 @@
     <ClInclude Include="src\Header\ShaderManager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="src\Header\RenderingInternEnums.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\DLLMain.cpp">

@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="src\Header\Renderer.h" />
     <ClInclude Include="src\Header\RendererStorage.h" />
+    <ClInclude Include="src\Header\RenderingInternEnums.h" />
     <ClInclude Include="src\Header\RenderingInternStructs.h" />
     <ClInclude Include="src\Header\ResourceLimits.h" />
     <ClInclude Include="src\Header\ShaderManager.h" />

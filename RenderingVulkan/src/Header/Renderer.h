@@ -126,6 +126,7 @@ namespace NV
             size_t m_currentFrame;
             std::unique_ptr<RendererStorage> m_storage;
 			std::unique_ptr<ShaderManager> m_shaderMgr;
+			ShaderModulePack m_defaultShaderModulepack; 
         public:
             /**
              * Default Constructor
@@ -140,8 +141,8 @@ namespace NV
             */
             int Run() override;
             /**
-            * Gets new mesh datas, which will get computed and registered in the renderer. To access them you have to use the index which is the return value
-            * @param meshData The raw mesh data includes vertices, indices eg. The index will be set in this function to access the shader from outside the renderer after applying
+            * Gets new mesh datas, which will get computed and registered in the renderer. To access them you have to use the index which will be added in the rawmeshdatastruct
+            * @param meshData The raw mesh data includes vertices, indices eg. The index will be set in this function to access the mesh from outside the renderer after applying
             * @return Returns the index of the overall computed and allocated data which aren't visible from outside of the renderer.
             */
             void ApplyRawMeshData(NV::IRendering::RawMeshData& meshData) override;
