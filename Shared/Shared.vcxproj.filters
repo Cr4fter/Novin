@@ -1,34 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Quelldateien">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Headerdateien">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Ressourcendateien">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="HeaderExtension files">
       <UniqueIdentifier>{2f383679-87e0-4854-b4b2-5edb991ce0bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules">
+      <UniqueIdentifier>{0162bd7f-f4d1-4196-890e-c5965ce8584a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Log">
+      <UniqueIdentifier>{8159fbfb-7e1f-4630-b6d1-294f6d97dc48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\ThreadPool">
+      <UniqueIdentifier>{f3ac78cd-da55-429a-9054-27195680e3b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\ResourceManagement">
+      <UniqueIdentifier>{2330ed18-8539-4a2f-83c4-73fc2f251f24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\EngineState">
+      <UniqueIdentifier>{82f9351f-eced-42f7-a3fd-fb427a1c8a76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\IniContainer">
+      <UniqueIdentifier>{ca4402a4-5086-4d8b-a69f-2a33f20f7e6b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpp\IniContainer.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\EngineState.cpp">
-      <Filter>Quelldateien</Filter>
+    <ClCompile Include="Log.cpp">
+      <Filter>Modules\Log</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\ThreadPool.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Modules\ThreadPool</Filter>
     </ClCompile>
-    <ClCompile Include="Log.cpp">
-      <Filter>Quelldateien</Filter>
+    <ClCompile Include="Include\ResourceManager.cpp">
+      <Filter>Modules\ResourceManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ResourceLoader.cpp">
+      <Filter>Modules\ResourceManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\EngineState.cpp">
+      <Filter>Modules\EngineState</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\IniContainer.cpp">
+      <Filter>Modules\IniContainer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -38,43 +54,35 @@
     <ClInclude Include="Include\GlobalStructs.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Include\BaseFunctions.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Include\BaseFunctions.hpp">
       <Filter>HeaderExtension files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\ResourceManager.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\ResourceLoader.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\iniContainer.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\EngineState.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Path.hpp">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\ThreadPool.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Log.h">
-      <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Include\GlobalEnums.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Include\ResourceManager.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ResourceLoader.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
+    <ClInclude Include="Include\Log.h">
+      <Filter>Modules\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ThreadPool.h">
+      <Filter>Modules\ThreadPool</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ResourceManager.h">
+      <Filter>Modules\ResourceManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ResourceLoader.h">
+      <Filter>Modules\ResourceManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\EngineState.h">
+      <Filter>Modules\EngineState</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\iniContainer.h">
+      <Filter>Modules\IniContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Path.hpp">
+      <Filter>HeaderExtension files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\BaseFunctions.h">
+      <Filter>HeaderExtension files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

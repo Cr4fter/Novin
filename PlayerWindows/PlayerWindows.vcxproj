@@ -98,7 +98,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Core\bin\$(Configuration);$(SolutionDir)PhysicsBullet\bin\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>EngineCore.lib;PhysicsBullet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>EngineShared.lib;EngineCore.lib;PhysicsBullet.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

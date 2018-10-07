@@ -1,6 +1,7 @@
 #pragma once
 #include "IComponent.h"
 #include "GameObject.h"
+#include "glm/vec3.hpp"
 extern "C"
 {
 #include "../lua/lua.h"
@@ -14,7 +15,7 @@ namespace NV
         class LuaScriptingComponent : public NV::SceneSystem::IComponent
         {
         private:
-            lua_State * m_LuaInstance = nullptr;
+            lua_State* m_LuaInstance = nullptr;
             bool m_SkipUpdate = false;
             bool m_Started = false;
         public:
@@ -23,6 +24,9 @@ namespace NV
             virtual void Initialize(SceneSystem::GameObject * HostObject) override;
             virtual void Update() override;
             virtual void Teardown() override;
+
+            static int GetPosition(lua_State *L);
+            //int GetPosition();
         };
     }
 }
