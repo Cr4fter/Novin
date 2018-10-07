@@ -17,6 +17,13 @@ TEST(BaseFunctions, GetExtensionOfFileCheck)
 	EXPECT_STREQ(str.c_str(), checkStr.c_str());
 }
 
+TEST(BaseFunctions, GetFileNameCheck)
+{
+	std::string str = NV::Base::GetFileName("test.x.obj");
+	std::string checkStr = "test"; 
+	EXPECT_STREQ(str.c_str(), checkStr.c_str());
+}
+
 TEST(ResourceLoader, LoadCheck)
 {
 	NV::Resources::ResourceLoader resLoader;
@@ -59,4 +66,3 @@ TEST(ResourceManager, RemoveCheck)
 
 	delete resManager;
 }
-

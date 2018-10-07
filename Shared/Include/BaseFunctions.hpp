@@ -1,3 +1,4 @@
+#include "BaseFunctions.h"
 #ifndef _BASE_FUNCTIONS_H_
 #error Do not include this file directly!
 #elif !defined _BASE_FUNCTIONS_HPP_
@@ -25,10 +26,38 @@ std::vector<char> NV::Base::ReadFile(const std::string & filePath, const int& mo
 std::string NV::Base::GetExtensionOfFile(const std::string & str)
 {
 	std::string tempStr;
-	bool isExtension = true;
 	for (std::string::const_reverse_iterator it = str.rbegin(); it != str.rend(); ++it)
 	{
 		if (*it == '.')
+		{
+			break;
+		}
+		tempStr.push_back(*it);
+	}
+	std::reverse(tempStr.begin(), tempStr.end());
+	return tempStr;
+}
+
+std::string NV::Base::GetFileName(const std::string & filePath)
+{
+	std::string tempStr;
+	bool isFileName = false;
+	for (std::string::const_reverse_iterator it = filePath.rbegin(); it != filePath.rend(); ++it)
+	{
+		if (*it == '.')
+		{
+			if (isFileName)
+			{
+				tempStr.clear();
+			}
+			isFileName = true;
+			continue;
+		}
+		if (!isFileName)
+		{
+			continue;
+		}
+		if (*it == '/')
 		{
 			break;
 		}

@@ -2,11 +2,13 @@
 #include <exception>
 #include "../Header/ComponentRigidBody.h"
 #include "../Header/ComponentLuaScript.h"
+#include "Log.h"
 
 void NV::SceneSystem::SceneManager::Initialize(Physics::PhysicsEngine* _PhysicsEngine)
 {
     m_PhysicsEngine = _PhysicsEngine;
     m_ActiveScene = SetupScene();
+    Debug::Log::LogMessage("Scene manager init");
 }
 
 void NV::SceneSystem::SceneManager::Update()

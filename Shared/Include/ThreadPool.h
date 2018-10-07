@@ -14,6 +14,7 @@ namespace NV
             Core::EngineState* m_EngineState = nullptr;
         public:
             void Init(Core::EngineState*);
+            void Teardown();
         };
     }
 }

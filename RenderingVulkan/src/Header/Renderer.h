@@ -1,9 +1,8 @@
 #pragma once
 #pragma region Internal Includes
-#include "IRendering.h"
 #include "GlobalStructs.h"
 #include "RenderingInternStructs.h"
-#include "RendererStorage.h"
+#include "IRendering.h"
 #pragma endregion // Internal Includes
 
 #pragma region External Includes
@@ -11,8 +10,24 @@
 #include <glfw3.h>
 #include <set>
 #include <iostream>
+#define GLFW_EXPOSE_NATIVE_WIN32
+#include <glfw3native.h>
+#define VK_USE_PLATFORM_WIN32_KHR
+#include "vulkan/vulkan_win32.h"
+#include "vulkan/libspirv.h"
+#include "Public/ShaderLang.h"
+#include "Include/ResourceLimits.h"
+#include "ResourceLimits.h"
+#include "SPIRV/GlslangToSpv.h"
+#include <fstream>
 #pragma endregion // External Includes
 
+#ifdef min
+#undef min 
+#endif
+#ifdef max
+#undef max
+#endif
 
 const int WIDTH = 1600;
 const int HEIGHT = 800;
@@ -21,6 +36,9 @@ namespace NV
 {
     namespace Rendering
     {
+		class ShaderManager;
+		class RendererStorage;
+
         struct QueueFamilyIndices {
             int GraphicsFamily = -1;
             int PresentFamily = -1;
@@ -36,6 +54,19 @@ namespace NV
             std::vector<VkPresentModeKHR> PresentModes;
         };
 
+
+		/// ----------** Static functions **----------
+
+		static VKAPI_ATTR VkBool32 VKAPI_CALL DebugCallBack(
+			VkDebugReportFlagsEXT flags,
+			VkDebugReportObjectTypeEXT objType,
+			uint64_t obj,
+			size_t location,
+			int32_t code,
+			const char* layerPrefix,
+			const char* msg,
+			void* userData);
+
         class Renderer : public IRendering::IRenderer
         {
         private:
@@ -43,6 +74,9 @@ namespace NV
                 "VK_LAYER_LUNARG_standard_validation"
             };
 
+			const std::vector<const char*> instanceExtensions = {
+				"VK_EXT_debug_report"
+			};
             const std::vector<const char*> deviceExtensions = {
                 VK_KHR_SWAPCHAIN_EXTENSION_NAME
             };
@@ -90,7 +124,9 @@ namespace NV
             std::vector<VkSemaphore> m_renderFinishedSemaphores;
             std::vector<VkFence> m_inFlightFences;
             size_t m_currentFrame;
-            RendererStorage* m_storage;
+            std::unique_ptr<RendererStorage> m_storage;
+			std::unique_ptr<ShaderManager> m_shaderMgr;
+			ShaderModulePack m_defaultShaderModulepack; 
         public:
             /**
              * Default Constructor
@@ -103,19 +139,26 @@ namespace NV
             /**
             * Updates the rendering.
             */
-            void Run() override;
+            int Run() override;
             /**
-            * Gets new mesh datas, which will get computed and registered in the renderer. To access them you have to use the index which is the return value
-            * @param meshData The raw mesh data includes vertices, indices eg. The index will be set in this function to access the shader from outside the renderer after applying
+            * Gets new mesh datas, which will get computed and registered in the renderer. To access them you have to use the index which will be added in the rawmeshdatastruct
+            * @param meshData The raw mesh data includes vertices, indices eg. The index will be set in this function to access the mesh from outside the renderer after applying
             * @return Returns the index of the overall computed and allocated data which aren't visible from outside of the renderer.
             */
             void ApplyRawMeshData(NV::IRendering::RawMeshData& meshData) override;
+			/**
+			* Register the shader data on the gpu to access them later. 
+			* @param shaderData The Data read out of the shader file
+			* @return The value you need to access the shader later on. 
+			*/
+			virtual uint32_t RegisterShader(const NV::IRendering::ShaderPack& shaderPack) override;
             /**
              * Releases the whole engine and every part of it
              */
             void Release() override;
         private:
             ///	    ---------** Functions for the Init method **---------
+			void InitWindow();
             /**
             * Initializes the devices which are needed to work with the renderer
             */
@@ -166,8 +209,9 @@ namespace NV
             void CreateDescriptorPool();
 
             /// ----------** Everything what happens while the rendering is in process **------------- 
+
             /**
-             * Creates the swap chain which is needed for the graphics pipeline
+             *  Creates the swap chain which is needed for the graphics pipeline
              */
             void CreateSwapChain();
             /**
@@ -178,14 +222,10 @@ namespace NV
              * Creates the render passs
              */
             void CreateRenderPass();
-            /**
-            * Creates the shaders based on the input in the Init method
-            */
-            void CreateShaders(std::vector<NV::IRendering::ShaderPack>& shaders);
-            /**
+			/**
             * Creates the layout for the graphics pipeline.
             */
-            void CreateGraphicsPipelineLayout(VkShaderModule shaderModule);
+            void CreateGraphicsPipelineLayout(const VkShaderModule& shaderModule);
             /**
              * Creates the graphics pipeline based on the available objects created before
              */
@@ -210,6 +250,7 @@ namespace NV
             */
             void CreateSyncObjects();
             /// ----------** Everything what happens when vulkan gets (partial) released **------------- 
+
             /**
             * Cleans up the swap chain and everything which depends on it for resizing the window eg.
             */
@@ -219,17 +260,8 @@ namespace NV
             */
             void Cleanup();
 
-            /// ----------** Static functions **----------
-            static VKAPI_ATTR VkBool32 VKAPI_CALL DebugCallBack(
-                VkDebugReportFlagsEXT flags,
-                VkDebugReportObjectTypeEXT objType,
-                uint64_t obj,
-                size_t location,
-                int32_t code,
-                const char* layerPrefix,
-                const char* msg,
-                void* userData);
             /// ----------** Proxy Methods **----------------
+
             /**
              * Proxy method to callback debug reports
              * @param instance The instance of vulkan where you want to get the reports from
@@ -249,6 +281,7 @@ namespace NV
 
             /// ----------** Helper functions **-------------------
                             /// ***----*** The helper functions to initialize the devices ***-----***
+
             /**
             * Checks if the validation layer is supported
             * @return if the validation layer is supported.
@@ -278,11 +311,12 @@ namespace NV
             */
             bool CheckDeviceExtensionSupport(VkPhysicalDevice device);
             /// ***----*** The helper functions to initialize vulkan to prepare rendering ***-----***
-/**
-* Checks if the device supports query swapchains
-* @param device The device to check for support
-* @return The details of the swapchainsupport
-*/
+
+			/**
+			* Checks if the device supports query swapchains
+			* @param device The device to check for support
+			* @return The details of the swapchainsupport
+			*/
             SwapChainSupportDetails QuerySwapChainSupport(VkPhysicalDevice device);
             /**
              * Chooses the swapchain surface format
@@ -345,12 +379,6 @@ namespace NV
             */
             uint32_t FindMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
             /**
-            * Creates a new shader module
-            * @param code The code of the shader
-            * @return The resulting shadermodule
-            */
-            VkShaderModule CreateShaderModule(NV::IRendering::ShaderPack pack);
-            /**
             * Transits an image layout to another image layout
             * @param image The image which will get another layout
             * @param format The format of the image
@@ -376,9 +404,10 @@ namespace NV
             */
             bool HasStencilComponent(VkFormat format);
             /// ***----*** The helper functions to make the rendering process ***-----***
-/**
-* Recreates the swap chain
-*/
+
+			/**
+			* Recreates the swap chain
+			*/
             void RecreateSwapChain();
         };
     }
