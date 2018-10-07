@@ -34,8 +34,7 @@ void NV::Core::Engine::Init(const std::string& ProjectPath)
 
     m_EngineState = new EngineState(ProjectPathComplete);
 
-    m_ThreadPool = new Threading::ThreadPool();
-    m_ThreadPool->Init(m_EngineState);
+    m_ThreadPool = new Threading::ThreadPool(m_EngineState, -1);
 
     link_Setup_renderer();
     m_Renderer->Init();
@@ -60,10 +59,15 @@ void NV::Core::Engine::Run()
     }
     Debug::Log::LogMessage("Engine Run");
 
+    Threading::ThreadJob* t1 = new Threading::ThreadJob();
+    t1->ExecutedFunction = []() { Debug::Log::LogMessage("Thread Working!"); };
+    t1->CleanOnFinish = false;
+
     while (m_EngineState->GetIsRunning())
     {
         auto frameStart = Clock::now();
-        
+        //m_ThreadPool->PostJob(t1);
+
         Debug::Log::HandleUpdate();
         m_Physics->Update(DeltaTime);
         m_Scene->Update();
@@ -102,7 +106,6 @@ void NV::Core::Engine::Teardown()
     m_Renderer->Release();
     delete m_Renderer;
 
-    m_ThreadPool->Teardown();
     delete m_ThreadPool;
 
     delete m_EngineState;
@@ -113,20 +116,20 @@ void NV::Core::Engine::Teardown()
 void NV::Core::Engine::link_Setup_renderer()
 {
     hGetProcIDDLL = LoadLibrary(L"Renderer.dll");
-    std::cout << HRESULT_FROM_WIN32(GetLastError()) << "\n";
 
     if (hGetProcIDDLL == nullptr) {
+        std::cout << GetLastError() << "\n";
         throw std::exception("cannot locate Renderer.dll");
     }
-    
+
     try
     {
-        const GetRenderingInstance fn_getRenderer = (GetRenderingInstance) GetProcAddress(hGetProcIDDLL, "GetRenderer");
+        const GetRenderingInstance fn_getRenderer = (GetRenderingInstance)GetProcAddress(hGetProcIDDLL, "GetRenderer");
         m_Renderer = fn_getRenderer();
     }
     catch (std::exception e)
     {
         std::cout << e.what() << "\n";
     }
-    
+
 }
