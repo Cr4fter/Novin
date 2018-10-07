@@ -6,6 +6,7 @@
 #include <vector>
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
+#include <glm/gtc/quaternion.hpp>
 #pragma endregion //External Includes
 
 namespace NV
@@ -61,6 +62,12 @@ namespace NV
 			uint32_t RendererIndex;
 			EShaderFormat GetFormat() const {
 			}
+		};
+		struct Transform
+		{
+			glm::vec3 Position; 
+			glm::vec3 Scale; 
+			glm::quat Rotation;
 		};
 	}
 }

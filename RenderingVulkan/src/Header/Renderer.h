@@ -1,10 +1,8 @@
 #pragma once
 #pragma region Internal Includes
-#include "IRendering.h"
 #include "GlobalStructs.h"
 #include "RenderingInternStructs.h"
-#include "RendererStorage.h"
-#include "ShaderManager.h"
+#include "IRendering.h"
 #pragma endregion // Internal Includes
 
 #pragma region External Includes
@@ -38,6 +36,8 @@ namespace NV
 {
     namespace Rendering
     {
+		class ShaderManager;
+		class RendererStorage;
 
         struct QueueFamilyIndices {
             int GraphicsFamily = -1;

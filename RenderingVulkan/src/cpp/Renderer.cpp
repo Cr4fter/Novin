@@ -1,4 +1,6 @@
 #include "../Header/Renderer.h"
+#include "../Header/RendererStorage.h"
+#include "../Header/ShaderManager.h"
 #include <cstdio>
 
 const char* vMain = "VertMain";
