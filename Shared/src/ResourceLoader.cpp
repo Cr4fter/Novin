@@ -6,10 +6,28 @@ NV::Resources::ResourceLoader::ResourceLoader()
 {
 }
 
-void NV::Resources::ResourceLoader::LoadShader(const std::string & shaderPath)
+void NV::Resources::ResourceLoader::LoadShader(const std::string & shaderPath, const std::string& ext)
 {
+	std::string fileName = NV::Base::GetFileName(shaderPath);
+
 	std::vector<char> shader = NV::Base::ReadFile(shaderPath);
+	if (shader.empty())
+	{
+		//TODO: Broken file
+		return;
+	}
+	for (NV::IRendering::ShaderPack pack : m_shaderPacks)
+	{
+		if (pack.ShaderName == fileName)
+		{
+			IncludeShaderInPack(pack, shader, ext);
+			return;
+		}
+	}
+	NV::IRendering::ShaderPack newPack; 
+	IncludeShaderInPack(newPack, shader, ext);
 }
+
 
 const aiScene* NV::Resources::ResourceLoader::LoadMesh(const std::string & objPath)
 {
@@ -18,7 +36,7 @@ const aiScene* NV::Resources::ResourceLoader::LoadMesh(const std::string & objPa
 	scene = importer.ReadFile(objPath, 0);
 	if (!scene)
 	{
-		//Broken file
+		//TODO: Broken file
 	}
 	return scene;
 }
@@ -28,4 +46,16 @@ NV::IRendering::RawTexData NV::Resources::ResourceLoader::LoadTexture(const std:
 	NV::IRendering::RawTexData texData = {};
 	texData.Pixels = stbi_load(texPath.c_str(), &texData.Width, &texData.Height, &texData.TexChannels, 0);
 	return texData;
+}
+
+void NV::Resources::ResourceLoader::IncludeShaderInPack(NV::IRendering::ShaderPack & pack, std::vector<char> shader, const std::string& ext)
+{
+	if (ext == "vert")
+	{
+		pack.VertexShader.ShaderCode = shader.data();
+	}
+	if (ext == "frag")
+	{
+		pack.FragShader.ShaderCode = shader.data();
+	}
 }

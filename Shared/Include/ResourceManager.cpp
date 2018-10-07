@@ -5,12 +5,14 @@ NV::Resources::ResourceManager::ResourceManager(const std::string & dirPath)
 	, m_resLoader(nullptr)
 	, m_texIndex(0)
 	, m_sceneIndex(0)
+	, m_shaderIndex(0)
 {
 }
 
 void NV::Resources::ResourceManager::Init()
 {
 	LoadFilesInDir(m_dirPath);
+
 }
 
 const aiScene * NV::Resources::ResourceManager::GetScene(const uint32_t & index)
@@ -37,13 +39,18 @@ void NV::Resources::ResourceManager::LoadFilesInDir(const std::string& dirPath)
 			IdentifyResource(iter->path().string());
 		}
 	}
+	for (NV::IRendering::ShaderPack pack : m_resLoader->GetShaderPacks())
+	{
+		StoreShaderPack(pack);
+	}
 }
 
 void NV::Resources::ResourceManager::IdentifyResource(const std::string & filePath)
 {
 	std::string ext = NV::Base::GetExtensionOfFile(filePath);
-	if (ext == "spv")
+	if (ext == "vert" || ext == "frag")
 	{
+		m_resLoader->LoadShader(filePath, ext);
 		return;
 	}
 	if (ext == "obj" || ext == "fbx")
@@ -68,6 +75,12 @@ void NV::Resources::ResourceManager::StoreTexture(NV::IRendering::RawTexData tex
 {
 	m_textures.insert(std::pair<uint32_t, NV::IRendering::RawTexData>(m_texIndex, texData));
 	m_texIndex++;
+}
+
+void NV::Resources::ResourceManager::StoreShaderPack(NV::IRendering::ShaderPack shaderPack)
+{
+	m_shaderPacks.insert(std::pair<uint32_t, NV::IRendering::ShaderPack>(m_shaderIndex++, shaderPack));
+	m_shaderIndex++;
 }
 
 void NV::Resources::ResourceManager::RemoveScene(const uint32_t & index)

@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Include\BaseFunctions.h" />
     <ClInclude Include="Include\BaseFunctions.hpp" />
+    <ClInclude Include="Include\GlobalEnums.h" />
     <ClInclude Include="Include\GlobalStructs.h" />
     <ClInclude Include="Include\EngineState.h" />
     <ClInclude Include="Include\iniContainer.h" />

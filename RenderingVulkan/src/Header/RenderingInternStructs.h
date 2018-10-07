@@ -7,11 +7,53 @@
 #include <glm\vec3.hpp>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm\gtx\hash.hpp>
+#include "RenderingInternEnums.h"
 
 namespace NV
 {
 	namespace Rendering
-	{
+	{ 
+		struct ShaderModulePack
+		{
+			void SetShader(VkShaderModule& module, const EShaderType& config)
+			{
+				PlacedShader |= config;
+				switch (config)
+				{
+				case EShaderType::EVertex:
+					VertexShader = module; 
+					break; 
+				case EShaderType::EFragment: 
+					FragShader = module;
+					break;
+				}
+			}
+			void RemoveShader(const EShaderType& config)
+			{
+				if (PlacedShader&config && config != EShaderType::ENone)
+				{
+					PlacedShader^=config;
+					switch (config)
+					{
+					case EShaderType::EVertex:
+						VertexShader = VK_NULL_HANDLE;
+						break;
+					case EShaderType::EFragment:
+						FragShader = VK_NULL_HANDLE;
+						break;
+					}
+				}
+				if (config == EShaderType::ENone)
+				{
+					VertexShader = VK_NULL_HANDLE; 
+					FragShader = VK_NULL_HANDLE;
+				}
+			}
+		private: 
+			VkShaderModule VertexShader; 
+			VkShaderModule FragShader; 
+			int32_t PlacedShader; 
+		};
 		struct Vertex
 		{
 			glm::vec3 Pos;
