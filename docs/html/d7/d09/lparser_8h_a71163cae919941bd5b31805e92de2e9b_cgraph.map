@@ -1,0 +1,10 @@
+<map id="luaY_parser" name="luaY_parser">
+<area shape="rect" id="node2" href="$d0/d63/lfunc_8c.html#a20ec9afa92ebc6716c348f7c6cf9312e" title="luaF_newLclosure" alt="" coords="144,5,271,32"/>
+<area shape="rect" id="node4" href="$d3/d08/ldo_8c.html#a4dd006aa3210fdc854d0441e2a98c9af" title="luaD_inctop" alt="" coords="162,56,253,83"/>
+<area shape="rect" id="node5" href="$dc/d1e/ltable_8c.html#a6c97fb2d6a020b0a6f852562fef93d97" title="luaH_new" alt="" coords="168,107,247,133"/>
+<area shape="rect" id="node6" href="$d0/d63/lfunc_8c.html#a4ffd9d8ef515a7f785d007de7ceb9e4f" title="luaF_newproto" alt="" coords="154,157,261,184"/>
+<area shape="rect" id="node7" href="$d1/d2f/lstring_8c.html#a6d47e53be6b8e58202bb927752f4824b" title="luaS_new" alt="" coords="168,208,247,235"/>
+<area shape="rect" id="node9" href="$d8/d7a/llex_8c.html#a169c85d08461f83e3f8a8c32dcb3d151" title="luaX_setinput" alt="" coords="158,259,257,285"/>
+<area shape="rect" id="node3" href="$de/d27/lgc_8c.html#abfc8404c5fbd2a1770202fa0b087d451" title="luaC_newobj" alt="" coords="319,107,414,133"/>
+<area shape="rect" id="node8" href="$d1/d2f/lstring_8c.html#ab41fb084ce3ea5e2779f6659ccc2484d" title="luaS_newlstr" alt="" coords="319,208,415,235"/>
+</map>

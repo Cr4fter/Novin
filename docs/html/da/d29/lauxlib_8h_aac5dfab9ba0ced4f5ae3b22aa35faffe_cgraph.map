@@ -1,0 +1,5 @@
+<map id="luaL_pushresult" name="luaL_pushresult">
+<area shape="rect" id="node2" href="$df/db6/lapi_8c.html#a2c325311534c23450cdf11931a8db0ae" title="lua_pushlstring" alt="" coords="167,31,276,57"/>
+<area shape="rect" id="node3" href="$d1/d2f/lstring_8c.html#a6d47e53be6b8e58202bb927752f4824b" title="luaS_new" alt="" coords="324,5,403,32"/>
+<area shape="rect" id="node4" href="$d1/d2f/lstring_8c.html#ab41fb084ce3ea5e2779f6659ccc2484d" title="luaS_newlstr" alt="" coords="451,31,547,57"/>
+</map>

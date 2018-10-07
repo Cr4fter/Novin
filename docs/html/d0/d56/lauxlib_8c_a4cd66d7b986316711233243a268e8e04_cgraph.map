@@ -1,0 +1,6 @@
+<map id="luaL_getsubtable" name="luaL_getsubtable">
+<area shape="rect" id="node2" href="$df/db6/lapi_8c.html#a8b47f1b5685c3f8018ba926abb99af24" title="lua_getfield" alt="" coords="181,5,268,32"/>
+<area shape="rect" id="node3" href="$df/db6/lapi_8c.html#a32821b04960f1c1223132349d04911c1" title="lua_absindex" alt="" coords="175,56,274,83"/>
+<area shape="rect" id="node4" href="$df/db6/lapi_8c.html#a602f61a9b583d69dc1c72c8970bd65e8" title="lua_pushvalue" alt="" coords="173,107,276,133"/>
+<area shape="rect" id="node5" href="$df/db6/lapi_8c.html#a3f2f542ee6728d82e51b1c302f9606df" title="lua_setfield" alt="" coords="181,157,268,184"/>
+</map>

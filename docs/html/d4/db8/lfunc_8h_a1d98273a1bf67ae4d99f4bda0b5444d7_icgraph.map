@@ -1,0 +1,5 @@
+<map id="luaF_newCclosure" name="luaF_newCclosure">
+<area shape="rect" id="node2" href="$da/dd2/lua_8h.html#a89f758ed8996c5f405cb7dfb41f78337" title="lua_pushcclosure" alt="" coords="181,5,304,32"/>
+<area shape="rect" id="node3" href="$da/d29/lauxlib_8h.html#a8750009b9bbc508e4c3818ebd15b4e14" title="luaL_setfuncs" alt="" coords="352,5,455,32"/>
+<area shape="rect" id="node4" href="$d6/d07/lualib_8h.html#a1aebe7162861d1f3fe9c0d6d269031d4" title="luaopen_base" alt="" coords="503,5,605,32"/>
+</map>

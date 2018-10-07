@@ -1,0 +1,6 @@
+<map id="luaL_where" name="luaL_where">
+<area shape="rect" id="node2" href="$d6/ddf/ldebug_8c.html#ac1fc03c27ee46caa4037df2d70f22110" title="lua_getstack" alt="" coords="147,5,243,32"/>
+<area shape="rect" id="node3" href="$d6/ddf/ldebug_8c.html#acaafc35d8e385c4d167229486165df6d" title="lua_getinfo" alt="" coords="153,56,237,83"/>
+<area shape="rect" id="node4" href="$df/db6/lapi_8c.html#ab190c226d38b289e6ca57683a9d4e0f0" title="lua_pushfstring" alt="" coords="140,107,249,133"/>
+<area shape="rect" id="node5" href="$d7/d9b/lobject_8c.html#aa83fa444a36d79521e846a766fa083d5" title="luaO_pushvfstring" alt="" coords="297,107,421,133"/>
+</map>

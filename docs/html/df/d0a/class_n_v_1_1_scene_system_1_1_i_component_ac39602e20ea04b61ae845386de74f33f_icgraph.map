@@ -1,0 +1,5 @@
+<map id="NV::SceneSystem::IComponent::Initialize" name="NV::SceneSystem::IComponent::Initialize">
+<area shape="rect" id="node2" href="$db/df7/class_n_v_1_1_scene_system_1_1_game_object.html#a7c0225665d8e3811d08666201f302cfe" title="NV::SceneSystem::GameObject\l::AddComponent" alt="" coords="260,5,471,47"/>
+<area shape="rect" id="node3" href="$d4/da2/class_n_v_1_1_scene_system_1_1_scene_manager.html#a79315662ccd20db813fd413479e55fec" title="NV::SceneSystem::SceneManager\l::SetupScene" alt="" coords="519,5,744,47"/>
+<area shape="rect" id="node4" href="$d4/da2/class_n_v_1_1_scene_system_1_1_scene_manager.html#a63805074a5554c2dc727c5bbf6a46552" title="NV::SceneSystem::SceneManager\l::Initialize" alt="" coords="792,5,1017,47"/>
+</map>

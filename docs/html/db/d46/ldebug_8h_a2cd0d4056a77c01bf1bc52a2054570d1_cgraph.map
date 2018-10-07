@@ -1,0 +1,12 @@
+<map id="luaG_opinterror" name="luaG_opinterror">
+<area shape="rect" id="node2" href="$d6/ddf/ldebug_8c.html#a60bf9ce85441bd5065f2b73640163711" title="luaG_typeerror" alt="" coords="164,81,271,108"/>
+<area shape="rect" id="node3" href="$d5/d09/ltm_8c.html#a6774390baf68edcb78194d0e0f8546ab" title="luaT_objtypename" alt="" coords="319,56,445,83"/>
+<area shape="rect" id="node7" href="$d6/ddf/ldebug_8c.html#a88d38ca5da2e7a1492fc9d5ad70c32c5" title="luaG_runerror" alt="" coords="332,107,432,133"/>
+<area shape="rect" id="node4" href="$dc/d1e/ltable_8c.html#ae8a52507e1c8966d9cf3f2dd5a0c325f" title="luaH_getshortstr" alt="" coords="493,5,611,32"/>
+<area shape="rect" id="node5" href="$d1/d2f/lstring_8c.html#a6d47e53be6b8e58202bb927752f4824b" title="luaS_new" alt="" coords="513,56,591,83"/>
+<area shape="rect" id="node6" href="$d1/d2f/lstring_8c.html#ab41fb084ce3ea5e2779f6659ccc2484d" title="luaS_newlstr" alt="" coords="670,56,766,83"/>
+<area shape="rect" id="node8" href="$d7/d9b/lobject_8c.html#aa83fa444a36d79521e846a766fa083d5" title="luaO_pushvfstring" alt="" coords="825,157,949,184"/>
+<area shape="rect" id="node9" href="$d6/ddf/ldebug_8c.html#a7e1dc7518150bf19bd9aa5dda166a2eb" title="luaG_addinfo" alt="" coords="503,157,601,184"/>
+<area shape="rect" id="node10" href="$d7/d9b/lobject_8c.html#a4708cca3615b7fafb7ea4631f486983b" title="luaO_chunkid" alt="" coords="667,157,769,184"/>
+<area shape="rect" id="node11" href="$d7/d9b/lobject_8c.html#a8e224db7123c74d695076a96d1bfda61" title="luaO_pushfstring" alt="" coords="659,208,777,235"/>
+</map>

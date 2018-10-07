@@ -1,0 +1,6 @@
+<map id="lua_error" name="lua_error">
+<area shape="rect" id="node2" href="$d6/ddf/ldebug_8c.html#af7366920f8408bb33ed01b1d6c0e1238" title="luaG_errormsg" alt="" coords="125,43,232,69"/>
+<area shape="rect" id="node3" href="$d3/d08/ldo_8c.html#a61c0a0185ef5ae1493dad10027f4db7e" title="luaD_callnoyield" alt="" coords="280,5,396,32"/>
+<area shape="rect" id="node5" href="$d3/d08/ldo_8c.html#a2b46d9db5b9ca3d5402a0c2ac640a6b0" title="luaD_throw" alt="" coords="295,80,381,107"/>
+<area shape="rect" id="node4" href="$d3/d08/ldo_8c.html#a5483fddd87ca999e7d037bf397ab7997" title="luaD_call" alt="" coords="444,5,519,32"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="luaL_getmetafield" name="luaL_getmetafield">
+<area shape="rect" id="node2" href="$df/db6/lapi_8c.html#a4caa9ca5e47a30bd45e33d83bf2d6d6e" title="lua_getmetatable" alt="" coords="176,5,297,32"/>
+<area shape="rect" id="node3" href="$df/db6/lapi_8c.html#a771d300f2e64b2197d1df9bf31660ebf" title="lua_pushstring" alt="" coords="183,56,290,83"/>
+<area shape="rect" id="node6" href="$df/db6/lapi_8c.html#a52944e714d1c64bda7b83f511c14b2d3" title="lua_rawget" alt="" coords="195,107,279,133"/>
+<area shape="rect" id="node4" href="$d1/d2f/lstring_8c.html#a6d47e53be6b8e58202bb927752f4824b" title="luaS_new" alt="" coords="345,56,424,83"/>
+<area shape="rect" id="node5" href="$d1/d2f/lstring_8c.html#ab41fb084ce3ea5e2779f6659ccc2484d" title="luaS_newlstr" alt="" coords="472,56,568,83"/>
+</map>

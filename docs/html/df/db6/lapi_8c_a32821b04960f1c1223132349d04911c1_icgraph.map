@@ -1,0 +1,8 @@
+<map id="lua_absindex" name="lua_absindex">
+<area shape="rect" id="node2" href="$da/d29/lauxlib_8h.html#a2b69e67252d95df410818251f4b2d8e5" title="luaL_ref" alt="" coords="179,5,245,32"/>
+<area shape="rect" id="node3" href="$da/d29/lauxlib_8h.html#a6200030ecae784852045161274501e0e" title="luaL_unref" alt="" coords="171,56,253,83"/>
+<area shape="rect" id="node4" href="$da/d29/lauxlib_8h.html#af26aec8cce4a3f4448c60f402d78f17d" title="luaL_callmeta" alt="" coords="161,107,263,133"/>
+<area shape="rect" id="node6" href="$da/d29/lauxlib_8h.html#a2605da7ef3a12d7e9cfa85939245f941" title="luaL_getsubtable" alt="" coords="152,157,272,184"/>
+<area shape="rect" id="node5" href="$da/d29/lauxlib_8h.html#aef6da057d1e26ed6449b92177f1f2f5a" title="luaL_tolstring" alt="" coords="320,107,419,133"/>
+<area shape="rect" id="node7" href="$da/d29/lauxlib_8h.html#af6e3e3ca0a445a50f34cfc26f89c7d61" title="luaL_requiref" alt="" coords="322,157,417,184"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="luaL_fileresult" name="luaL_fileresult">
+<area shape="rect" id="node2" href="$df/db6/lapi_8c.html#a56bbb7479265e38da2e2596e6ec25faa" title="lua_pushboolean" alt="" coords="155,5,273,32"/>
+<area shape="rect" id="node3" href="$df/db6/lapi_8c.html#a1b4cd0d80f51e5545a97ca6c28c03c50" title="lua_pushnil" alt="" coords="171,56,257,83"/>
+<area shape="rect" id="node4" href="$df/db6/lapi_8c.html#ab190c226d38b289e6ca57683a9d4e0f0" title="lua_pushfstring" alt="" coords="159,107,269,133"/>
+<area shape="rect" id="node6" href="$df/db6/lapi_8c.html#a771d300f2e64b2197d1df9bf31660ebf" title="lua_pushstring" alt="" coords="161,157,267,184"/>
+<area shape="rect" id="node9" href="$df/db6/lapi_8c.html#adcec46ff05dfee9a3c4c05828b40c213" title="lua_pushinteger" alt="" coords="157,208,271,235"/>
+<area shape="rect" id="node5" href="$d7/d9b/lobject_8c.html#aa83fa444a36d79521e846a766fa083d5" title="luaO_pushvfstring" alt="" coords="321,107,445,133"/>
+<area shape="rect" id="node7" href="$d1/d2f/lstring_8c.html#a6d47e53be6b8e58202bb927752f4824b" title="luaS_new" alt="" coords="344,157,423,184"/>
+<area shape="rect" id="node8" href="$d1/d2f/lstring_8c.html#ab41fb084ce3ea5e2779f6659ccc2484d" title="luaS_newlstr" alt="" coords="493,157,589,184"/>
+</map>

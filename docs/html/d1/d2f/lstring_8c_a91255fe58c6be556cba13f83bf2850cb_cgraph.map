@@ -1,0 +1,9 @@
+<map id="luaS_newudata" name="luaS_newudata">
+<area shape="rect" id="node2" href="$d7/d45/lmem_8c.html#a8fc7df43dd830ccbe7581fd53f65bdbe" title="luaM_toobig" alt="" coords="165,5,257,32"/>
+<area shape="rect" id="node8" href="$de/d27/lgc_8c.html#abfc8404c5fbd2a1770202fa0b087d451" title="luaC_newobj" alt="" coords="164,56,259,83"/>
+<area shape="rect" id="node3" href="$d6/ddf/ldebug_8c.html#a88d38ca5da2e7a1492fc9d5ad70c32c5" title="luaG_runerror" alt="" coords="307,5,407,32"/>
+<area shape="rect" id="node4" href="$d7/d9b/lobject_8c.html#aa83fa444a36d79521e846a766fa083d5" title="luaO_pushvfstring" alt="" coords="767,31,891,57"/>
+<area shape="rect" id="node5" href="$d6/ddf/ldebug_8c.html#a7e1dc7518150bf19bd9aa5dda166a2eb" title="luaG_addinfo" alt="" coords="455,31,552,57"/>
+<area shape="rect" id="node6" href="$d7/d9b/lobject_8c.html#a4708cca3615b7fafb7ea4631f486983b" title="luaO_chunkid" alt="" coords="609,31,710,57"/>
+<area shape="rect" id="node7" href="$d7/d9b/lobject_8c.html#a8e224db7123c74d695076a96d1bfda61" title="luaO_pushfstring" alt="" coords="600,81,719,108"/>
+</map>

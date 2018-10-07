@@ -1,0 +1,6 @@
+<map id="luaL_pushresultsize" name="luaL_pushresultsize">
+<area shape="rect" id="node2" href="$d0/d56/lauxlib_8c.html#a3a1f80033814e2057583a7d24cee23b4" title="luaL_pushresult" alt="" coords="191,31,304,57"/>
+<area shape="rect" id="node3" href="$df/db6/lapi_8c.html#a2c325311534c23450cdf11931a8db0ae" title="lua_pushlstring" alt="" coords="352,31,461,57"/>
+<area shape="rect" id="node4" href="$d1/d2f/lstring_8c.html#a6d47e53be6b8e58202bb927752f4824b" title="luaS_new" alt="" coords="509,5,588,32"/>
+<area shape="rect" id="node5" href="$d1/d2f/lstring_8c.html#ab41fb084ce3ea5e2779f6659ccc2484d" title="luaS_newlstr" alt="" coords="636,31,732,57"/>
+</map>

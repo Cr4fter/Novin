@@ -1,0 +1,8 @@
+<map id="NV::SceneSystem::SceneManager::SetupScene" name="NV::SceneSystem::SceneManager::SetupScene">
+<area shape="rect" id="node2" href="$da/d5f/class_n_v_1_1_scene_system_1_1_scene.html#a2ab33ddd9a5c0ae0d05f01f1f43ad876" title="NV::SceneSystem::Scene\l::SoftInitialize" alt="" coords="297,5,471,47"/>
+<area shape="rect" id="node3" href="$db/df7/class_n_v_1_1_scene_system_1_1_game_object.html#aa9bf974ed16ed1a4c17edea7888c8194" title="NV::SceneSystem::GameObject\l::Initialize" alt="" coords="279,71,489,112"/>
+<area shape="rect" id="node5" href="$db/df7/class_n_v_1_1_scene_system_1_1_game_object.html#a7c0225665d8e3811d08666201f302cfe" title="NV::SceneSystem::GameObject\l::AddComponent" alt="" coords="279,136,489,177"/>
+<area shape="rect" id="node7" href="$da/d5f/class_n_v_1_1_scene_system_1_1_scene.html#a8d8c76c962f2ba6114a628d031887155" title="NV::SceneSystem::Scene\l::AddSceneObject" alt="" coords="297,201,471,243"/>
+<area shape="rect" id="node4" href="$d6/db1/class_n_v_1_1_scene_system_1_1_transform_component.html#a6caa3659ee7102a13d109699e7b4194e" title="NV::SceneSystem::Transform\lComponent::Initialize" alt="" coords="543,71,738,112"/>
+<area shape="rect" id="node6" href="$df/d0a/class_n_v_1_1_scene_system_1_1_i_component.html#ac39602e20ea04b61ae845386de74f33f" title="NV::SceneSystem::IComponent\l::Initialize" alt="" coords="537,136,744,177"/>
+</map>

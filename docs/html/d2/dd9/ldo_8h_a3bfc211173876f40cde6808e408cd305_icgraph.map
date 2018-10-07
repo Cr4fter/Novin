@@ -1,0 +1,24 @@
+<map id="luaD_throw" name="luaD_throw">
+<area shape="rect" id="node2" href="$db/d46/ldebug_8h.html#acd5ef9f67a8e9d08f6540636fdbeafe6" title="luaG_errormsg" alt="" coords="144,208,251,235"/>
+<area shape="rect" id="node21" href="$db/d46/ldebug_8h.html#ada504a1d1fda25490ea8d42fb2094303" title="luaG_traceexec" alt="" coords="141,259,254,285"/>
+<area shape="rect" id="node22" href="$d2/dd9/ldo_8h.html#ab83418a7edbfafe87886f156aa6a9988" title="luaD_growstack" alt="" coords="140,309,255,336"/>
+<area shape="rect" id="node23" href="$da/dd2/lua_8h.html#af2786755dac30d9e89f9a02948a84def" title="lua_yieldk" alt="" coords="157,360,237,387"/>
+<area shape="rect" id="node3" href="$da/dd2/lua_8h.html#aae6c05ddea7bd110a3e84595ef92e601" title="lua_error" alt="" coords="303,208,375,235"/>
+<area shape="rect" id="node4" href="$da/d29/lauxlib_8h.html#a994f73d7985c30672469a260d9e86ae6" title="luaL_error" alt="" coords="423,208,501,235"/>
+<area shape="rect" id="node5" href="$da/d29/lauxlib_8h.html#ad0599591343ae7836d46e685b16e69de" title="luaL_argerror" alt="" coords="568,56,665,83"/>
+<area shape="rect" id="node8" href="$da/d29/lauxlib_8h.html#a724f5a5aeee97c0b40948c8bca91341c" title="luaL_checkstack" alt="" coords="557,107,677,133"/>
+<area shape="rect" id="node11" href="$da/d29/lauxlib_8h.html#a0fb6d10de24960ceed452061b47c2c06" title="luaL_prepbuffsize" alt="" coords="555,157,678,184"/>
+<area shape="rect" id="node17" href="$da/d29/lauxlib_8h.html#ac9d38b77e425247b630afdb212401a05" title="luaL_len" alt="" coords="581,208,652,235"/>
+<area shape="rect" id="node18" href="$da/d29/lauxlib_8h.html#aef6da057d1e26ed6449b92177f1f2f5a" title="luaL_tolstring" alt="" coords="567,259,666,285"/>
+<area shape="rect" id="node19" href="$da/d29/lauxlib_8h.html#ab42194a5a9cd8a6f6ee9123ef1807e52" title="luaL_checkversion_" alt="" coords="549,309,684,336"/>
+<area shape="rect" id="node20" href="$d6/d07/lualib_8h.html#abb41e0d9276447688b5958aa96d919e2" title="luaopen_bit32" alt="" coords="565,360,668,387"/>
+<area shape="rect" id="node6" href="$da/d29/lauxlib_8h.html#ae4a7f494cc400b09f5cbccfc3f8187c5" title="luaL_checkoption" alt="" coords="732,5,855,32"/>
+<area shape="rect" id="node7" href="$da/d29/lauxlib_8h.html#a21ba19f50ce2a499224d2710f6fa7728" title="luaL_checkany" alt="" coords="739,56,848,83"/>
+<area shape="rect" id="node9" href="$da/d29/lauxlib_8h.html#a8750009b9bbc508e4c3818ebd15b4e14" title="luaL_setfuncs" alt="" coords="742,107,845,133"/>
+<area shape="rect" id="node10" href="$d6/d07/lualib_8h.html#a1aebe7162861d1f3fe9c0d6d269031d4" title="luaopen_base" alt="" coords="905,81,1007,108"/>
+<area shape="rect" id="node12" href="$da/d29/lauxlib_8h.html#a06fceedb3abb1272566ca22c96e34b95" title="luaL_addlstring" alt="" coords="739,157,848,184"/>
+<area shape="rect" id="node16" href="$da/d29/lauxlib_8h.html#ab8f18fe563cab9ea411ae84d2c1c2518" title="luaL_buffinitsize" alt="" coords="736,208,851,235"/>
+<area shape="rect" id="node13" href="$da/d29/lauxlib_8h.html#ad9c038f6e108e216011aca1801f84f44" title="luaL_addstring" alt="" coords="903,132,1009,159"/>
+<area shape="rect" id="node14" href="$da/d29/lauxlib_8h.html#a46672be75da57e1a464c5c6d80f19064" title="luaL_gsub" alt="" coords="1057,157,1139,184"/>
+<area shape="rect" id="node15" href="$da/d29/lauxlib_8h.html#aeeb03d69681da0ec0e952b582ce3841c" title="luaL_addvalue" alt="" coords="905,233,1007,260"/>
+</map>

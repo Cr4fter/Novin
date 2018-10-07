@@ -1,0 +1,4 @@
+<map id="NV::Scripting::LuaScriptingComponent::Teardown" name="NV::Scripting::LuaScriptingComponent::Teardown">
+<area shape="rect" id="node2" href="$df/db6/lapi_8c.html#a8185a9c46d5930205f95beee4991e9f0" title="lua_getglobal" alt="" coords="232,5,331,32"/>
+<area shape="rect" id="node3" href="$dd/dca/lstate_8c.html#a5d903983f1497b2fc58fba9df09e354d" title="lua_close" alt="" coords="243,56,320,83"/>
+</map>

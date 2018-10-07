@@ -1,0 +1,7 @@
+<map id="lua_getmetatable" name="lua_getmetatable">
+<area shape="rect" id="node2" href="$da/d29/lauxlib_8h.html#ab40f618f7e65d9af23e01f3924c3d6c8" title="luaL_testudata" alt="" coords="183,5,289,32"/>
+<area shape="rect" id="node4" href="$da/d29/lauxlib_8h.html#aed3f129411ba1ec14f813d650f16384d" title="luaL_getmetafield" alt="" coords="175,56,297,83"/>
+<area shape="rect" id="node3" href="$da/d29/lauxlib_8h.html#aed8d8e4f3b95c6bcac246ec9895027b1" title="luaL_checkudata" alt="" coords="345,5,465,32"/>
+<area shape="rect" id="node5" href="$da/d29/lauxlib_8h.html#af26aec8cce4a3f4448c60f402d78f17d" title="luaL_callmeta" alt="" coords="354,56,457,83"/>
+<area shape="rect" id="node6" href="$da/d29/lauxlib_8h.html#aef6da057d1e26ed6449b92177f1f2f5a" title="luaL_tolstring" alt="" coords="513,81,612,108"/>
+</map>

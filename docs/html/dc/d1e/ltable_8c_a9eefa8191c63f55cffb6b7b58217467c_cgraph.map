@@ -1,0 +1,11 @@
+<map id="luaH_setint" name="luaH_setint">
+<area shape="rect" id="node2" href="$dc/d1e/ltable_8c.html#ae142cefd44452389877c3e3187c7973e" title="luaH_getint" alt="" coords="146,5,233,32"/>
+<area shape="rect" id="node3" href="$dc/d1e/ltable_8c.html#acd27c97015f505846bd7052b144f3133" title="luaH_newkey" alt="" coords="140,56,239,83"/>
+<area shape="rect" id="node4" href="$d6/ddf/ldebug_8c.html#a88d38ca5da2e7a1492fc9d5ad70c32c5" title="luaG_runerror" alt="" coords="289,31,389,57"/>
+<area shape="rect" id="node9" href="$dd/d4a/lvm_8c.html#acdf7e8db180808362a373d9b5484452e" title="luaV_tointeger" alt="" coords="287,81,392,108"/>
+<area shape="rect" id="node5" href="$d7/d9b/lobject_8c.html#aa83fa444a36d79521e846a766fa083d5" title="luaO_pushvfstring" alt="" coords="757,31,881,57"/>
+<area shape="rect" id="node6" href="$d6/ddf/ldebug_8c.html#a7e1dc7518150bf19bd9aa5dda166a2eb" title="luaG_addinfo" alt="" coords="443,31,540,57"/>
+<area shape="rect" id="node7" href="$d7/d9b/lobject_8c.html#a4708cca3615b7fafb7ea4631f486983b" title="luaO_chunkid" alt="" coords="599,31,701,57"/>
+<area shape="rect" id="node8" href="$d7/d9b/lobject_8c.html#a8e224db7123c74d695076a96d1bfda61" title="luaO_pushfstring" alt="" coords="591,81,709,108"/>
+<area shape="rect" id="node10" href="$d7/d9b/lobject_8c.html#ab1956c979ca7ff39b07534390714505d" title="luaO_str2num" alt="" coords="440,81,543,108"/>
+</map>

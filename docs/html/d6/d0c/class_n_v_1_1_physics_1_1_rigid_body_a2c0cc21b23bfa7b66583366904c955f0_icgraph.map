@@ -1,0 +1,4 @@
+<map id="NV::Physics::RigidBody::GetRigidBody" name="NV::Physics::RigidBody::GetRigidBody">
+<area shape="rect" id="node2" href="$dc/d03/class_n_v_1_1_physics_1_1_physics_engine.html#a0e3a801fa99e6bab87e422ab3511fa6f" title="NV::Physics::PhysicsEngine\l::RegisterRigidbody" alt="" coords="216,5,407,47"/>
+<area shape="rect" id="node3" href="$dc/d03/class_n_v_1_1_physics_1_1_physics_engine.html#a422a53c52feb0b7dd89b9d8aba873fd9" title="NV::Physics::PhysicsEngine\l::UnRegisterRigidbody" alt="" coords="216,71,407,112"/>
+</map>

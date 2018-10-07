@@ -1,0 +1,5 @@
+<map id="lua_getglobal" name="lua_getglobal">
+<area shape="rect" id="node2" href="$d6/d17/class_n_v_1_1_scripting_1_1_lua_scripting_component.html#ab72a9488f342dd2277d79f94a706aee9" title="NV::Scripting::LuaScripting\lComponent::Initialize" alt="" coords="152,5,331,47"/>
+<area shape="rect" id="node3" href="$d6/d17/class_n_v_1_1_scripting_1_1_lua_scripting_component.html#a69a9496b166bccc3677b5e5d51711137" title="NV::Scripting::LuaScripting\lComponent::Update" alt="" coords="152,71,331,112"/>
+<area shape="rect" id="node4" href="$d6/d17/class_n_v_1_1_scripting_1_1_lua_scripting_component.html#a33203ce505d27295e652860e15196bca" title="NV::Scripting::LuaScripting\lComponent::Teardown" alt="" coords="152,136,331,177"/>
+</map>

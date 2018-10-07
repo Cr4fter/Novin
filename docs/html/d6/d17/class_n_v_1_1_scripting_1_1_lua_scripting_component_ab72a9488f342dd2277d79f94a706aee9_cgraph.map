@@ -1,0 +1,10 @@
+<map id="NV::Scripting::LuaScriptingComponent::Initialize" name="NV::Scripting::LuaScriptingComponent::Initialize">
+<area shape="rect" id="node2" href="$d0/d56/lauxlib_8c.html#aac01e11c3aeeec5ca26b28f285eadb9e" title="luaL_newstate" alt="" coords="285,5,390,32"/>
+<area shape="rect" id="node4" href="$da/ded/linit_8c.html#a975e179a76941267d2fa773a703d6199" title="luaL_openlibs" alt="" coords="287,56,388,83"/>
+<area shape="rect" id="node5" href="$db/df7/class_n_v_1_1_scene_system_1_1_game_object.html#a7b8f9727b3ce6d7ee4e73e5e1650ecbd" title="NV::SceneSystem::GameObject\l::GetName" alt="" coords="232,107,443,149"/>
+<area shape="rect" id="node6" href="$d6/d17/class_n_v_1_1_scripting_1_1_lua_scripting_component.html#a43abca62d8ade87a5b01f0afa40a8e63" title="NV::Scripting::LuaScripting\lComponent::GetPosition" alt="" coords="248,173,427,214"/>
+<area shape="rect" id="node8" href="$df/db6/lapi_8c.html#aecf388efaede9d97581335998dfa243b" title="lua_setglobal" alt="" coords="288,239,387,265"/>
+<area shape="rect" id="node9" href="$df/db6/lapi_8c.html#a8185a9c46d5930205f95beee4991e9f0" title="lua_getglobal" alt="" coords="288,289,387,316"/>
+<area shape="rect" id="node3" href="$dd/dca/lstate_8c.html#a59a0d54f62839bcb7dfa8d0d7b4761b4" title="lua_newstate" alt="" coords="500,5,599,32"/>
+<area shape="rect" id="node7" href="$df/db6/lapi_8c.html#a328625a03fbb5548f27b1af10f109f6a" title="lua_pushnumber" alt="" coords="491,180,608,207"/>
+</map>

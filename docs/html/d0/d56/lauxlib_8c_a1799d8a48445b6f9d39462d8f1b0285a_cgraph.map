@@ -1,0 +1,6 @@
+<map id="luaL_checkudata" name="luaL_checkudata">
+<area shape="rect" id="node2" href="$d0/d56/lauxlib_8c.html#af2ad56ae788ac3a59b4e0e29852ab460" title="luaL_testudata" alt="" coords="173,56,280,83"/>
+<area shape="rect" id="node3" href="$df/db6/lapi_8c.html#a0444ddf13e5618bca969e4b3b47bc0cc" title="lua_touserdata" alt="" coords="335,5,442,32"/>
+<area shape="rect" id="node4" href="$df/db6/lapi_8c.html#a4caa9ca5e47a30bd45e33d83bf2d6d6e" title="lua_getmetatable" alt="" coords="328,56,449,83"/>
+<area shape="rect" id="node5" href="$df/db6/lapi_8c.html#ace66ea78ced7fda0b367f45d09d10d83" title="lua_rawequal" alt="" coords="340,107,437,133"/>
+</map>

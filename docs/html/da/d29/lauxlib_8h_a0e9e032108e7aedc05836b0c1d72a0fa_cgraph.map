@@ -1,0 +1,11 @@
+<map id="luaL_newmetatable" name="luaL_newmetatable">
+<area shape="rect" id="node2" href="$df/db6/lapi_8c.html#a7f93e3baf3101cad59ec61b7744a55d8" title="lua_createtable" alt="" coords="187,56,297,83"/>
+<area shape="rect" id="node6" href="$df/db6/lapi_8c.html#a771d300f2e64b2197d1df9bf31660ebf" title="lua_pushstring" alt="" coords="189,107,295,133"/>
+<area shape="rect" id="node9" href="$df/db6/lapi_8c.html#a3f2f542ee6728d82e51b1c302f9606df" title="lua_setfield" alt="" coords="199,157,285,184"/>
+<area shape="rect" id="node10" href="$df/db6/lapi_8c.html#a602f61a9b583d69dc1c72c8970bd65e8" title="lua_pushvalue" alt="" coords="191,208,293,235"/>
+<area shape="rect" id="node3" href="$dc/d1e/ltable_8c.html#a6c97fb2d6a020b0a6f852562fef93d97" title="luaH_new" alt="" coords="351,5,430,32"/>
+<area shape="rect" id="node5" href="$dc/d1e/ltable_8c.html#a261bfad2fb15273968f2b07c6cbd803a" title="luaH_resize" alt="" coords="345,56,436,83"/>
+<area shape="rect" id="node4" href="$de/d27/lgc_8c.html#abfc8404c5fbd2a1770202fa0b087d451" title="luaC_newobj" alt="" coords="485,5,579,32"/>
+<area shape="rect" id="node7" href="$d1/d2f/lstring_8c.html#a6d47e53be6b8e58202bb927752f4824b" title="luaS_new" alt="" coords="351,107,430,133"/>
+<area shape="rect" id="node8" href="$d1/d2f/lstring_8c.html#ab41fb084ce3ea5e2779f6659ccc2484d" title="luaS_newlstr" alt="" coords="484,107,580,133"/>
+</map>

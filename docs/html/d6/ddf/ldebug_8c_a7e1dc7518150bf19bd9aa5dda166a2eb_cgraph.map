@@ -1,0 +1,5 @@
+<map id="luaG_addinfo" name="luaG_addinfo">
+<area shape="rect" id="node2" href="$d7/d9b/lobject_8c.html#a4708cca3615b7fafb7ea4631f486983b" title="luaO_chunkid" alt="" coords="159,5,261,32"/>
+<area shape="rect" id="node3" href="$d7/d9b/lobject_8c.html#a8e224db7123c74d695076a96d1bfda61" title="luaO_pushfstring" alt="" coords="151,56,269,83"/>
+<area shape="rect" id="node4" href="$d7/d9b/lobject_8c.html#aa83fa444a36d79521e846a766fa083d5" title="luaO_pushvfstring" alt="" coords="317,56,441,83"/>
+</map>

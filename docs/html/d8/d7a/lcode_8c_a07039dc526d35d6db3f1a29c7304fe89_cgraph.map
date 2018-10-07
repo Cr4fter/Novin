@@ -1,0 +1,7 @@
+<map id="luaK_infix" name="luaK_infix">
+<area shape="rect" id="node2" href="$d8/d7a/lcode_8c.html#a7d4ea6b61d0c157feca2afa59a9f877e" title="luaK_goiftrue" alt="" coords="147,5,244,32"/>
+<area shape="rect" id="node5" href="$d8/d7a/lcode_8c.html#a61d509689d21bb8b1fe8681a03ccbe58" title="luaK_goiffalse" alt="" coords="144,56,247,83"/>
+<area shape="rect" id="node6" href="$d8/d7a/lcode_8c.html#a252b7ff26ed24db991e8a11275bcf75c" title="luaK_exp2nextreg" alt="" coords="132,107,259,133"/>
+<area shape="rect" id="node3" href="$d8/d7a/lcode_8c.html#a982df0963fcf2227c3a5c96163d8ef03" title="luaK_dischargevars" alt="" coords="307,56,441,83"/>
+<area shape="rect" id="node4" href="$d8/d7a/lcode_8c.html#aa0b8eb77b722d3a6cc50b2b73d75a134" title="luaK_codeABC" alt="" coords="489,56,600,83"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="luaT_callorderTM" name="luaT_callorderTM">
+<area shape="rect" id="node2" href="$d5/d09/ltm_8c.html#a218e3b031d69a9888eb20da1927058c4" title="luaT_callbinTM" alt="" coords="173,31,281,57"/>
+<area shape="rect" id="node3" href="$d5/d09/ltm_8c.html#a0a3a3df9d6e7f17d806f74d411e59b2d" title="luaT_gettmbyobj" alt="" coords="329,5,447,32"/>
+<area shape="rect" id="node5" href="$d5/d09/ltm_8c.html#a686ae3e53c278247c7761c65a40152c7" title="luaT_callTM" alt="" coords="343,56,433,83"/>
+<area shape="rect" id="node4" href="$dc/d1e/ltable_8c.html#ae8a52507e1c8966d9cf3f2dd5a0c325f" title="luaH_getshortstr" alt="" coords="495,5,612,32"/>
+<area shape="rect" id="node6" href="$d3/d08/ldo_8c.html#a5483fddd87ca999e7d037bf397ab7997" title="luaD_call" alt="" coords="660,81,735,108"/>
+<area shape="rect" id="node7" href="$d3/d08/ldo_8c.html#a61c0a0185ef5ae1493dad10027f4db7e" title="luaD_callnoyield" alt="" coords="495,107,611,133"/>
+</map>

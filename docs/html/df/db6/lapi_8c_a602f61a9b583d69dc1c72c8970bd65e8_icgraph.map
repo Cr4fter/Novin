@@ -1,0 +1,9 @@
+<map id="lua_pushvalue" name="lua_pushvalue">
+<area shape="rect" id="node2" href="$da/d29/lauxlib_8h.html#a0e9e032108e7aedc05836b0c1d72a0fa" title="luaL_newmetatable" alt="" coords="156,5,289,32"/>
+<area shape="rect" id="node3" href="$da/d29/lauxlib_8h.html#af26aec8cce4a3f4448c60f402d78f17d" title="luaL_callmeta" alt="" coords="171,56,274,83"/>
+<area shape="rect" id="node4" href="$da/d29/lauxlib_8h.html#aef6da057d1e26ed6449b92177f1f2f5a" title="luaL_tolstring" alt="" coords="339,81,438,108"/>
+<area shape="rect" id="node5" href="$da/d29/lauxlib_8h.html#a8750009b9bbc508e4c3818ebd15b4e14" title="luaL_setfuncs" alt="" coords="171,157,274,184"/>
+<area shape="rect" id="node7" href="$da/d29/lauxlib_8h.html#a2605da7ef3a12d7e9cfa85939245f941" title="luaL_getsubtable" alt="" coords="163,208,283,235"/>
+<area shape="rect" id="node8" href="$da/d29/lauxlib_8h.html#af6e3e3ca0a445a50f34cfc26f89c7d61" title="luaL_requiref" alt="" coords="341,233,436,260"/>
+<area shape="rect" id="node6" href="$d6/d07/lualib_8h.html#a1aebe7162861d1f3fe9c0d6d269031d4" title="luaopen_base" alt="" coords="337,157,440,184"/>
+</map>

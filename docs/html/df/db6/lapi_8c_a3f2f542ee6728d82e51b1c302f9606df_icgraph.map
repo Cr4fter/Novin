@@ -1,0 +1,7 @@
+<map id="lua_setfield" name="lua_setfield">
+<area shape="rect" id="node2" href="$da/d29/lauxlib_8h.html#a0e9e032108e7aedc05836b0c1d72a0fa" title="luaL_newmetatable" alt="" coords="140,5,273,32"/>
+<area shape="rect" id="node3" href="$da/d29/lauxlib_8h.html#a8750009b9bbc508e4c3818ebd15b4e14" title="luaL_setfuncs" alt="" coords="155,56,258,83"/>
+<area shape="rect" id="node5" href="$da/d29/lauxlib_8h.html#a2605da7ef3a12d7e9cfa85939245f941" title="luaL_getsubtable" alt="" coords="147,107,267,133"/>
+<area shape="rect" id="node6" href="$da/d29/lauxlib_8h.html#af6e3e3ca0a445a50f34cfc26f89c7d61" title="luaL_requiref" alt="" coords="325,132,420,159"/>
+<area shape="rect" id="node4" href="$d6/d07/lualib_8h.html#a1aebe7162861d1f3fe9c0d6d269031d4" title="luaopen_base" alt="" coords="321,56,424,83"/>
+</map>

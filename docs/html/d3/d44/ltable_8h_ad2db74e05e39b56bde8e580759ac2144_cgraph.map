@@ -1,0 +1,6 @@
+<map id="luaH_get" name="luaH_get">
+<area shape="rect" id="node2" href="$dc/d1e/ltable_8c.html#ae8a52507e1c8966d9cf3f2dd5a0c325f" title="luaH_getshortstr" alt="" coords="127,5,244,32"/>
+<area shape="rect" id="node3" href="$dc/d1e/ltable_8c.html#ae142cefd44452389877c3e3187c7973e" title="luaH_getint" alt="" coords="142,56,229,83"/>
+<area shape="rect" id="node4" href="$dd/d4a/lvm_8c.html#acdf7e8db180808362a373d9b5484452e" title="luaV_tointeger" alt="" coords="133,107,238,133"/>
+<area shape="rect" id="node5" href="$d7/d9b/lobject_8c.html#ab1956c979ca7ff39b07534390714505d" title="luaO_str2num" alt="" coords="292,107,395,133"/>
+</map>

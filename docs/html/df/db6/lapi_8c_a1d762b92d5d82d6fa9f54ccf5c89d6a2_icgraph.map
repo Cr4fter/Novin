@@ -1,0 +1,5 @@
+<map id="lua_checkstack" name="lua_checkstack">
+<area shape="rect" id="node2" href="$da/d29/lauxlib_8h.html#a724f5a5aeee97c0b40948c8bca91341c" title="luaL_checkstack" alt="" coords="167,5,287,32"/>
+<area shape="rect" id="node3" href="$da/d29/lauxlib_8h.html#a8750009b9bbc508e4c3818ebd15b4e14" title="luaL_setfuncs" alt="" coords="335,5,437,32"/>
+<area shape="rect" id="node4" href="$d6/d07/lualib_8h.html#a1aebe7162861d1f3fe9c0d6d269031d4" title="luaopen_base" alt="" coords="485,5,588,32"/>
+</map>

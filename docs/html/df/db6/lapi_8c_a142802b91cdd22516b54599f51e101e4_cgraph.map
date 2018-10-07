@@ -1,0 +1,4 @@
+<map id="lua_pushcclosure" name="lua_pushcclosure">
+<area shape="rect" id="node2" href="$d0/d63/lfunc_8c.html#a1f3c8568e17e64660d1765868dc16720" title="luaF_newCclosure" alt="" coords="176,5,304,32"/>
+<area shape="rect" id="node3" href="$de/d27/lgc_8c.html#abfc8404c5fbd2a1770202fa0b087d451" title="luaC_newobj" alt="" coords="352,5,447,32"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="luaD_rawrunprotected" name="luaD_rawrunprotected">
+<area shape="rect" id="node2" href="$da/dd2/lua_8h.html#a3da4830349a139e15b4c08ced6739f0a" title="lua_checkstack" alt="" coords="200,5,313,32"/>
+<area shape="rect" id="node6" href="$d2/dd9/ldo_8h.html#ad1087faa52e2bb98c00806ea1ac198a6" title="luaD_pcall" alt="" coords="215,56,298,83"/>
+<area shape="rect" id="node3" href="$da/d29/lauxlib_8h.html#a724f5a5aeee97c0b40948c8bca91341c" title="luaL_checkstack" alt="" coords="374,5,494,32"/>
+<area shape="rect" id="node4" href="$da/d29/lauxlib_8h.html#a8750009b9bbc508e4c3818ebd15b4e14" title="luaL_setfuncs" alt="" coords="555,5,657,32"/>
+<area shape="rect" id="node5" href="$d6/d07/lualib_8h.html#a1aebe7162861d1f3fe9c0d6d269031d4" title="luaopen_base" alt="" coords="705,5,808,32"/>
+<area shape="rect" id="node7" href="$d2/dd9/ldo_8h.html#a5dffa85d966f14d3f3464db580f5b3fa" title="luaD_protectedparser" alt="" coords="361,56,507,83"/>
+</map>

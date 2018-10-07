@@ -1,0 +1,15 @@
+<map id="Core/src/Header/IComponent.h" name="Core/src/Header/IComponent.h">
+<area shape="rect" id="node2" href="$df/d91/_game_object_8h.html" title="Core/src/Header/GameObject.h" alt="" coords="43,169,247,196"/>
+<area shape="rect" id="node9" href="$d3/d9f/_component_lua_script_8h.html" title="Core/src/Header/Component\lLuaScript.h" alt="" coords="464,244,651,285"/>
+<area shape="rect" id="node11" href="$d0/d46/_component_transform_8h.html" title="Core/src/Header/Component\lTransform.h" alt="" coords="303,80,489,121"/>
+<area shape="rect" id="node13" href="$d5/d5f/_component_rigid_body_8h.html" title="Core/src/Header/Component\lRigidBody.h" alt="" coords="627,80,813,121"/>
+<area shape="rect" id="node3" href="$de/d56/_scene_8h.html" title="Core/src/Header/Scene.h" alt="" coords="39,251,207,278"/>
+<area shape="rect" id="node8" href="$d3/df6/_game_object_8cpp.html" title="Core/src/cpp/GameObject.cpp" alt="" coords="231,251,430,278"/>
+<area shape="rect" id="node4" href="$d1/da9/_scene_manager_8h.html" title="Core/src/Header/SceneManager.h" alt="" coords="5,333,224,360"/>
+<area shape="rect" id="node7" href="$d9/d44/_scene_8cpp.html" title="Core/src/cpp/Scene.cpp" alt="" coords="248,333,411,360"/>
+<area shape="rect" id="node5" href="$d4/d68/_engine_8cpp.html" title="Core/src/cpp/Engine.cpp" alt="" coords="32,408,197,435"/>
+<area shape="rect" id="node6" href="$d0/d5f/_scene_manager_8cpp.html" title="Core/src/cpp/SceneManager.cpp" alt="" coords="611,408,823,435"/>
+<area shape="rect" id="node10" href="$d0/d96/_script_component_8cpp.html" title="Core/src/Header/ScriptComponent.cpp" alt="" coords="435,333,680,360"/>
+<area shape="rect" id="node12" href="$d2/d7f/_transform_component_8cpp.html" title="Core/src/cpp/TransformComponent.cpp" alt="" coords="272,169,520,196"/>
+<area shape="rect" id="node14" href="$db/d7d/_rigid_body_component_8cpp.html" title="Core/src/cpp/RigidBodyComponent.cpp" alt="" coords="595,169,845,196"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="luaD_hook" name="luaD_hook">
+<area shape="rect" id="node2" href="$db/d46/ldebug_8h.html#ada504a1d1fda25490ea8d42fb2094303" title="luaG_traceexec" alt="" coords="136,5,249,32"/>
+<area shape="rect" id="node3" href="$d2/dd9/ldo_8h.html#a9535108eb40deb7df6ed33d0fd2b67fb" title="luaD_poscall" alt="" coords="145,107,241,133"/>
+<area shape="rect" id="node4" href="$d2/dd9/ldo_8h.html#af2326bf8464de1e4ce3c5f7aef2ed5d4" title="luaD_precall" alt="" coords="297,56,391,83"/>
+<area shape="rect" id="node5" href="$d5/dcd/lvm_8h.html#ae93565adc36c6e2157dbbd875433ede1" title="luaV_execute" alt="" coords="439,81,540,108"/>
+</map>

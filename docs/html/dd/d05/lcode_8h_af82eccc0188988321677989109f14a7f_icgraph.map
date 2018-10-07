@@ -1,0 +1,17 @@
+<map id="luaK_codeABC" name="luaK_codeABC">
+<area shape="rect" id="node2" href="$dd/d05/lcode_8h.html#a0b4caf213c4d4697d63ad22fedda0d1f" title="luaK_nil" alt="" coords="197,31,265,57"/>
+<area shape="rect" id="node3" href="$dd/d05/lcode_8h.html#aa7c34b815a59b7ed4b5d585825cad475" title="luaK_ret" alt="" coords="196,81,267,108"/>
+<area shape="rect" id="node4" href="$dd/d05/lcode_8h.html#a4722275409ea90ad0cfc56723b8f21bb" title="luaK_dischargevars" alt="" coords="164,132,299,159"/>
+<area shape="rect" id="node16" href="$dd/d05/lcode_8h.html#a88808415ff9297023fb19b4e84a19033" title="luaK_setlist" alt="" coords="186,183,277,209"/>
+<area shape="rect" id="node5" href="$dd/d05/lcode_8h.html#a61926f09ebafc501840e6cac1bebb16d" title="luaK_exp2nextreg" alt="" coords="347,5,473,32"/>
+<area shape="rect" id="node7" href="$dd/d05/lcode_8h.html#a219ca12ddb52437285a46bddfc4feeb8" title="luaK_exp2anyreg" alt="" coords="349,157,471,184"/>
+<area shape="rect" id="node9" href="$dd/d05/lcode_8h.html#abbb8eb20146165d70bbda57068685f1e" title="luaK_exp2val" alt="" coords="540,208,639,235"/>
+<area shape="rect" id="node12" href="$dd/d05/lcode_8h.html#a2a87516e72f08e1b692331de96a6d8d6" title="luaK_posfix" alt="" coords="711,259,801,285"/>
+<area shape="rect" id="node14" href="$dd/d05/lcode_8h.html#afff58a79c5fb3e56811bcf9a4315bfda" title="luaK_goiftrue" alt="" coords="361,56,459,83"/>
+<area shape="rect" id="node15" href="$dd/d05/lcode_8h.html#a8f1abd44cd0ec08b43ad809b9db04840" title="luaK_goiffalse" alt="" coords="359,107,461,133"/>
+<area shape="rect" id="node6" href="$dd/d05/lcode_8h.html#ad66fe8cd73e03e0d604d8c9572011ee7" title="luaK_infix" alt="" coords="550,56,629,83"/>
+<area shape="rect" id="node8" href="$dd/d05/lcode_8h.html#a2d79e7835a757a0bace8b3f01eba161b" title="luaK_exp2anyregup" alt="" coords="521,107,657,133"/>
+<area shape="rect" id="node13" href="$dd/d05/lcode_8h.html#aeaf22c625b86a7b63ec83cf8b6036815" title="luaK_self" alt="" coords="552,157,627,184"/>
+<area shape="rect" id="node10" href="$dd/d05/lcode_8h.html#a28ef529fcd27c07fb222181894abdf7e" title="luaK_exp2RK" alt="" coords="705,208,807,235"/>
+<area shape="rect" id="node11" href="$dd/d05/lcode_8h.html#aef9f69dd75331c1ad4ad55329fe5a1d9" title="luaK_indexed" alt="" coords="855,208,955,235"/>
+</map>

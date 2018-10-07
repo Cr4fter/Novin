@@ -1,0 +1,5 @@
+<map id="luaL_loadfilex" name="luaL_loadfilex">
+<area shape="rect" id="node2" href="$df/db6/lapi_8c.html#afbb08ecb69421875494105d4de68e5bf" title="lua_gettop" alt="" coords="167,5,249,32"/>
+<area shape="rect" id="node3" href="$df/db6/lapi_8c.html#ab190c226d38b289e6ca57683a9d4e0f0" title="lua_pushfstring" alt="" coords="153,56,263,83"/>
+<area shape="rect" id="node4" href="$d7/d9b/lobject_8c.html#aa83fa444a36d79521e846a766fa083d5" title="luaO_pushvfstring" alt="" coords="311,56,435,83"/>
+</map>

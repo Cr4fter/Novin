@@ -1,0 +1,13 @@
+<map id="luaO_str2num" name="luaO_str2num">
+<area shape="rect" id="node2" href="$da/dd2/lua_8h.html#af4d885e44232f561cfc508a71e144f8f" title="lua_stringtonumber" alt="" coords="156,5,288,32"/>
+<area shape="rect" id="node3" href="$d5/dcd/lvm_8h.html#a8dde84947fb2b5ec169813216235a4ba" title="luaV_tonumber_" alt="" coords="164,56,280,83"/>
+<area shape="rect" id="node4" href="$d5/dcd/lvm_8h.html#aac950c9ce343d56969893821c717c27c" title="luaV_tointeger" alt="" coords="169,107,275,133"/>
+<area shape="rect" id="node5" href="$d3/d44/ltable_8h.html#a61547e63b2d74aa68da53a7fd235e77e" title="luaH_newkey" alt="" coords="336,132,435,159"/>
+<area shape="rect" id="node10" href="$d3/d44/ltable_8h.html#ad2db74e05e39b56bde8e580759ac2144" title="luaH_get" alt="" coords="349,81,422,108"/>
+<area shape="rect" id="node6" href="$d3/d44/ltable_8h.html#aad12092dcea6ae55728aadeeb0210d91" title="luaH_set" alt="" coords="497,132,571,159"/>
+<area shape="rect" id="node8" href="$d3/d44/ltable_8h.html#ac62838e269732b63812012592c454462" title="luaH_setint" alt="" coords="491,183,577,209"/>
+<area shape="rect" id="node9" href="$d5/dcd/lvm_8h.html#a57c2754ff3ea895f8206b4a67e762337" title="luaV_finishset" alt="" coords="483,81,585,108"/>
+<area shape="rect" id="node7" href="$d8/d27/llex_8h.html#aa6e79179f823cf156f61899a09239ca6" title="luaX_newstring" alt="" coords="633,132,741,159"/>
+<area shape="rect" id="node11" href="$d5/dcd/lvm_8h.html#a282d1037898c9b77aae41b12327a6c72" title="luaV_finishget" alt="" coords="483,31,585,57"/>
+<area shape="rect" id="node12" href="$d5/dcd/lvm_8h.html#ae93565adc36c6e2157dbbd875433ede1" title="luaV_execute" alt="" coords="637,31,738,57"/>
+</map>

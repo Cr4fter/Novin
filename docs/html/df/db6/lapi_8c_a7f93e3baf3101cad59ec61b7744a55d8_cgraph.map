@@ -1,0 +1,5 @@
+<map id="lua_createtable" name="lua_createtable">
+<area shape="rect" id="node2" href="$dc/d1e/ltable_8c.html#a6c97fb2d6a020b0a6f852562fef93d97" title="luaH_new" alt="" coords="170,5,249,32"/>
+<area shape="rect" id="node4" href="$dc/d1e/ltable_8c.html#a261bfad2fb15273968f2b07c6cbd803a" title="luaH_resize" alt="" coords="164,56,255,83"/>
+<area shape="rect" id="node3" href="$de/d27/lgc_8c.html#abfc8404c5fbd2a1770202fa0b087d451" title="luaC_newobj" alt="" coords="303,5,397,32"/>
+</map>

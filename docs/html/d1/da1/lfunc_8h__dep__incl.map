@@ -1,0 +1,11 @@
+<map id="Core/src/lua/lfunc.h" name="Core/src/lua/lfunc.h">
+<area shape="rect" id="node2" href="$df/db6/lapi_8c.html" title="Core/src/lua/lapi.c" alt="" coords="5,80,132,107"/>
+<area shape="rect" id="node3" href="$d6/ddf/ldebug_8c.html" title="Core/src/lua/ldebug.c" alt="" coords="156,80,301,107"/>
+<area shape="rect" id="node4" href="$d3/d08/ldo_8c.html" title="Core/src/lua/ldo.c" alt="" coords="325,80,449,107"/>
+<area shape="rect" id="node5" href="$d0/d63/lfunc_8c.html" title="Core/src/lua/lfunc.c" alt="" coords="473,80,608,107"/>
+<area shape="rect" id="node6" href="$de/d27/lgc_8c.html" title="Core/src/lua/lgc.c" alt="" coords="632,80,756,107"/>
+<area shape="rect" id="node7" href="$d8/d9c/lparser_8c.html" title="Core/src/lua/lparser.c" alt="" coords="781,80,927,107"/>
+<area shape="rect" id="node8" href="$dd/dca/lstate_8c.html" title="Core/src/lua/lstate.c" alt="" coords="951,80,1090,107"/>
+<area shape="rect" id="node9" href="$de/d2f/lundump_8c.html" title="Core/src/lua/lundump.c" alt="" coords="1115,80,1271,107"/>
+<area shape="rect" id="node10" href="$dd/d4a/lvm_8c.html" title="Core/src/lua/lvm.c" alt="" coords="1295,80,1421,107"/>
+</map>

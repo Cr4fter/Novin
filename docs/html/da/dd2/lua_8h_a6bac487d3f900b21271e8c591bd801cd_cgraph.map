@@ -1,0 +1,5 @@
+<map id="lua_gc" name="lua_gc">
+<area shape="rect" id="node2" href="$dd/dca/lstate_8c.html#a42e891d6a8e1dc58d9a1487cefd9c236" title="luaE_setdebt" alt="" coords="113,5,212,32"/>
+<area shape="rect" id="node3" href="$de/d27/lgc_8c.html#ac48130e5263ad8be09a9c51dae6125b9" title="luaC_fullgc" alt="" coords="120,56,205,83"/>
+<area shape="rect" id="node4" href="$de/d27/lgc_8c.html#ab0133eb7bb37a0a690e0ef71fbc13414" title="luaC_step" alt="" coords="123,107,203,133"/>
+</map>

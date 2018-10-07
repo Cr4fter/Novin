@@ -1,0 +1,5 @@
+<map id="luaK_patchlist" name="luaK_patchlist">
+<area shape="rect" id="node2" href="$d8/d7a/lcode_8c.html#a5748ad3c940c7916a2586fab6181a197" title="luaK_patchtohere" alt="" coords="157,31,280,57"/>
+<area shape="rect" id="node3" href="$d8/d7a/lcode_8c.html#afd70025e040dde0ef167df148de201b0" title="luaK_getlabel" alt="" coords="328,5,428,32"/>
+<area shape="rect" id="node4" href="$d8/d7a/lcode_8c.html#a99718e3c19e193690f60b7595bee952e" title="luaK_concat" alt="" coords="331,56,425,83"/>
+</map>
