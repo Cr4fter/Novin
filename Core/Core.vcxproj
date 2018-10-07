@@ -140,7 +140,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
     <IntDir>$(ProjectDir)tmp\$(configuration)\</IntDir>
-    <IncludePath>C:\Users\noah.forberich\Documents\Visual Studio 2017\Projects\Novin\Core\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Include;$(ProjectDir)extern\OpenAL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)extern\OpenAL\libs\$(Platform);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -159,10 +160,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>EngineShared.lib;PhysicsBullet.lib;</AdditionalDependencies>
+      <AdditionalDependencies>EngineShared.lib;PhysicsBullet.lib;OpenAL32.lib;EFX-Util.lib;</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)PhysicsBullet\bin\$(Configuration);$(SolutionDir)Shared\bin\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)PhysicsBullet\bin\$(Configuration);$(SolutionDir)Shared\bin\$(Configuration);$(ProjectDir)extern\OpenAL\libs\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -186,10 +187,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>EngineShared.lib;PhysicsBullet.lib;</AdditionalDependencies>
+      <AdditionalDependencies>EngineShared.lib;PhysicsBullet.lib;OpenAL32.lib;EFX-Util.lib;</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)PhysicsBullet\bin\$(Configuration);$(SolutionDir)Shared\bin\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)PhysicsBullet\bin\$(Configuration);$(SolutionDir)Shared\bin\$(Configuration);$(ProjectDir)extern\OpenAL\libs\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

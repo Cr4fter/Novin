@@ -33,3 +33,8 @@ std::string NV::SceneSystem::GameObject::GetName()
 {
     return m_Name;
 }
+
+NV::SceneSystem::TransformComponent* NV::SceneSystem::GameObject::GetTransform()
+{
+    return m_Transform;
+}
